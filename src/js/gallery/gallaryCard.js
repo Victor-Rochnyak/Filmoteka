@@ -12,7 +12,7 @@ const moviesApiService = new MoviesApiService();
 moviesApiService
   .fetchGenres()
   .then(({ genres }) => {
-    localStorage.setItem("genre",JSON.stringify(genres))
+    localStorage.setItem("genre", JSON.stringify(genres));
 
     // for (const { id, name } of genres) {
     
@@ -37,16 +37,27 @@ moviesApiService
 
 function genresList(array) {
   let genre_names = '';
-
+  let foundGenres = 0;
+  const arrGenres = JSON.parse(localStorage.getItem('genre'));
   for (const id of array) {
-    const genre_name = localStorage.getItem(`genre_${id}`);
+    const genre_name = arrGenres.find(genre => id === genre.id);
+    //const genre_name = localStorage.getItem(`genre_${id}`);
     if (!genre_name) {
       continue;
     }
     if (genre_names) {
       genre_names += ', ';
     }
-    genre_names += genre_name;
+    if (foundGenres === 2) {
+      genre_names += 'Others';
+      break;
+    }  
+      
+    foundGenres += 1;
+    genre_names += genre_name.name;
+  }
+  if (!genre_names) {
+    genre_names = 'unknown';
   }
   return genre_names;
 }
