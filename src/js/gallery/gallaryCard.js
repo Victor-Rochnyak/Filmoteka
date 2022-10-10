@@ -25,7 +25,7 @@ moviesApiService
 moviesApiService
   .fetchTrendingMovies()
   .then(({ results, total_results }) => {
-    renderSlider(results);
+    // renderSlider(results);
     makingMarkup(results);
     createPagination(total_results);
     localStorage.setItem("film",JSON.stringify(results))
@@ -85,83 +85,83 @@ function insertFilmsMarkup(filmsMarkup) {
 }
 
 
-function renderSlider() {
-  const markup = moviesApiService.sliderFilms
-    .map(
-      ({ id, poster_path, title }) =>
-        `<div class="swiper-slider__wrapper swiper-slide">
-              <img class="slide-img"
-              src="${URL_POSTER}/${poster_path}" 
-              alt="${title}" "id=${id}" 
-              width=""
-              />
+// function renderSlider() {
+//   const markup = moviesApiService.sliderFilms
+//     .map(
+//       ({ id, poster_path, title }) =>
+//         `<div class="swiper-slider__wrapper swiper-slide">
+//               <img class="slide-img"
+//               src="${URL_POSTER}/${poster_path}" 
+//               alt="${title}" "id=${id}" 
+//               width=""
+//               />
 
-          </div>`
-    )
-    .join('');
+//           </div>`
+//     )
+//     .join('');
     
-    sliderContainerRef.insertAdjacentHTML('beforeend', markup);
+//     sliderContainerRef.insertAdjacentHTML('beforeend', markup);
 
-  const swiper = new Swiper('.swiper', {
-    disableOnInteraction: true,
-    slidesPerView: 7,
-    slidesPerGroup: 1,
-    spaceBetween: 65,
-    speed: 2500,
-    // centralSlides: true,
-    loop: true,
+//   const swiper = new Swiper('.swiper', {
+//     disableOnInteraction: true,
+//     slidesPerView: 7,
+//     slidesPerGroup: 1,
+//     spaceBetween: 65,
+//     speed: 2500,
+//     // centralSlides: true,
+//     loop: true,
 
-    grabCursor: true,
-    effect: 'coverflow',
-    coverflowEffect: {
-      //modifier:5, //для mobile
-      depth: 70,
-      rotate: 8,
-      stretch: 50,
-      slideShadows: false,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    autoplay: {
-      delay: 1,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    freeMode: true,
+//     grabCursor: true,
+//     effect: 'coverflow',
+//     coverflowEffect: {
+//       //modifier:5, //для mobile
+//       depth: 70,
+//       rotate: 8,
+//       stretch: 50,
+//       slideShadows: false,
+//     },
+//     navigation: {
+//       nextEl: '.swiper-button-next',
+//       prevEl: '.swiper-button-prev',
+//     },
+//     autoplay: {
+//       delay: 1,
+//       disableOnInteraction: false,
+//       pauseOnMouseEnter: true,
+//     },
+//     freeMode: true,
 
-    breakpoints: {
-      768: {
-        loop: true,
-        slidesPerView: 3,
-        slidesPerGroup: 1,
-        spaceBetween: 60,
-        disableOnInteraction: true,
-        navigation: {
-          enabled: true,
-        },
-      },
-      1200: {
-        loop: true,
-        slidesPerView: 5,
-        slidesPerGroup: 1,
-        spaceBetween: 65,
-        disableOnInteraction: true,
-        navigation: {
-          enabled: true,
-        },
-      },
-      1500: {
-        loop: true,
-        slidesPerView: 5,
-        slidesPerGroup: 1,
-        spaceBetween: 58,
-        disableOnInteraction: true,
-        navigation: {
-          enabled: true,
-        },
-      },
-    },
-  });
-}
+//     breakpoints: {
+//       768: {
+//         loop: true,
+//         slidesPerView: 3,
+//         slidesPerGroup: 1,
+//         spaceBetween: 60,
+//         disableOnInteraction: true,
+//         navigation: {
+//           enabled: true,
+//         },
+//       },
+//       1200: {
+//         loop: true,
+//         slidesPerView: 5,
+//         slidesPerGroup: 1,
+//         spaceBetween: 65,
+//         disableOnInteraction: true,
+//         navigation: {
+//           enabled: true,
+//         },
+//       },
+//       1500: {
+//         loop: true,
+//         slidesPerView: 5,
+//         slidesPerGroup: 1,
+//         spaceBetween: 58,
+//         disableOnInteraction: true,
+//         navigation: {
+//           enabled: true,
+//         },
+//       },
+//     },
+//   });
+// }
