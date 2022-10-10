@@ -12,9 +12,10 @@ const moviesApiService = new MoviesApiService();
 moviesApiService
   .fetchGenres()
   .then(({ genres }) => {
-    for (const { id, name } of genres) {
-      localStorage.setItem(`genre_${id}`, name);
-    }
+    localStorage.setItem(`genre`, JSON.stringify(genres));
+    // for (const { id, name } of genres) {
+    //   localStorage.setItem(`genre_${id}`, name);
+    // }
   })
   .catch(error => console.log(error));
 
@@ -33,16 +34,19 @@ moviesApiService
 
 function genresList(array) {
   let genre_names = '';
-
+  const arrGenres = JSON.parse(localStorage.getItem(`genre`));
+  
+  
   for (const id of array) {
-    const genre_name = localStorage.getItem(`genre_${id}`);
+    const genre_name = arrGenres.find(genre => id === genre.id);
+    
     if (!genre_name) {
       continue;
     }
     if (genre_names) {
       genre_names += ', ';
     }
-    genre_names += genre_name;
+    genre_names += genre_name.name;
   }
   return genre_names;
 }
