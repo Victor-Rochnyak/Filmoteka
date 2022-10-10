@@ -1,0 +1,97 @@
+.slider-section {
+  // padding-top: 60px;
+  // padding-bottom: 60px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  // background: rgb(0, 0, 0);
+  // background-image: url('https://img.freepik.com/premium-vector/ukraine-flag-with-brush-concept-and-halftone-effect-flag-of-ukraine-in-grunge-style-pray-for-ukraine-hand-painted-brush-flag-of-ukraine-country_115973-3814.jpg?w=996');
+  // background-image: url('https://img.freepik.com/premium-vector/ukraine-flag-with-brush-concept-flag-of-ukraine-in-grunge-style-pray-for-ukraine-hand-painted-brush-flag-of-ukraine-country_115973-3875.jpg?w=996');
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: rgba(255, 120, 0);
+  border: 1px solid rgba(255, 120, 0);
+  border-radius: 5px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color:rgba(94, 68, 45, 0.6);
+}
+
+:root {
+  --background-dark: #2d3548;
+  --text-light: rgba(255, 255, 255, 0.6);
+  --text-lighter: rgba(255, 255, 255, 0.9);
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 64px;
+  // --width-container: 1200px;
+}
+
+.swiper-slider__wrapper {
+  box-shadow: 0px 0px 15px 2px rgb(94, 94, 94);
+
+  list-style: none;
+  border-radius: 5px;
+  max-width: 100%;
+}
+
+.swiper-slider__wrapper:before {
+  content: '';
+  border-radius: 15px;
+  display: block;
+  box-shadow: 0px 0px 34px 1px rgba(255, 204, 0, 1);
+}
+
+.slide-img {
+  border-radius: 5px;
+  background-size: contain;
+  background-position: center;
+  filter: brightness(1.2) saturate(1) contrast(1);
+  transform-origin: center;
+  transform: scale(1) translateZ(0);
+  transition: filter 300ms linear, transform 200ms linear, scale 250ms;
+}
+
+.image-slider__wrapper:hover > .swiper-slider__wrapper:not(:hover) .slide-img {
+  filter: brightness(0.6) saturate(1) contrast(1) blur(1px);
+}
+
+@media screen and (max-width: 767.98px) {
+  .slider-container {
+    display: none;
+  }
+}
+
+.slide-img:hover {
+  transform: scale(1.08) translateZ(0);
+  box-shadow: 0px 0px 25px 10px rgba(255, 120, 0);
+}

@@ -1,0 +1,11 @@
+import './js/api/api';
+import './js/header/header';
+import './js/slider';
+import './js/components/loader';
+// import './js/components/sliderHero';
+import './js/gallery/gallaryCard';
+import './js/gallery/local-storage';
+import './js/footer/footer';
+import './js/pagination/pagination';
+import './js/scroll';
+import './js/gallery/modal-form';

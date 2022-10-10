@@ -1,2 +1,27 @@
+// utils - Змінні var
+@import './utils/vars';
+@import './utils/visually-hidden';
+
+// Базові настройки та сброси
 @import './common';
-@import './example';
+@import './reset';
+@import './conteiner';
+
+// Компоненти , які можливо перезаписати: Кнопки, модальні вікна, соціальні іконки
+@import './components/button';
+@import './components/form-gallary';
+@import './components/form-footer';
+@import './components/social-icons';
+@import './components/scroll';
+@import './components/slider';
+
+// Секції сайту
+@import './layouts/header-home';
+@import './layouts/header-library';
+@import './layouts/gallary';
+@import './layouts/modal-gallary';
+@import './layouts/pagination';
+@import './layouts/footer';
+@import './layouts/footer-modal';
+
+
