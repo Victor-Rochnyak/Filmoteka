@@ -7,7 +7,7 @@ const homeCardsContainer = document.querySelector('.cards__list--home');
 const sliderContainerRef = document.querySelector('.swiper-wrapper');
 const moviesApiService = new MoviesApiService();
 
-let genresItem = [];
+// let genresItem = [];
 //  ЖАНРИ ДО LOCALSTORAGE
 moviesApiService
   .fetchGenres()
@@ -15,7 +15,7 @@ moviesApiService
     localStorage.setItem("genre",JSON.stringify(genres))
 
     // for (const { id, name } of genres) {
-    //   genresItem 
+    
     //   localStorage.setItem(`genre_${id}`, name);
     // }
   })
