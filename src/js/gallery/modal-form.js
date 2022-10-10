@@ -21,10 +21,9 @@ function onOpenModal(evt) {
   const movie_id = evt.target.dataset.id;
 
   fetchOneMovieInfo(movie_id).then(data => {
-    console.log(data);
     murckupCard(data);
 
-    // додаємо слухача на кнопку закриття
+    // додаємо слухача на кнопку закриттяя
 
     const btnModalClos = document.querySelector('.close__button__modal');
     btnModalClos.addEventListener('click', () => onCloseBtn());
@@ -38,8 +37,24 @@ function onCloseBtn() {
   modalEl.classList.remove('is-open');
 }
 
-// Ф-ція відмльовування картки
-function murckupCard(data) {
+function murckupCard({
+  poster_path,
+  title,
+  vote_average,
+  vote_count,
+  popularity,
+  original_title,
+  overview,
+  genres,
+}) {
+  function setPosters(poster) {
+    if (poster === null) {
+      return 'https://wipfilms.net/wp-content/data/posters/tt0338683.jpg';
+    }
+
+    return `https://www.themoviedb.org/t/p/w500${poster_path}`;
+  }
+
   return (modalEl.innerHTML = `
   <div class='modal__backdrop'></div>
 
@@ -47,7 +62,7 @@ function murckupCard(data) {
     <div class='film__image'>
       <img
         class='image'
-        src='https://www.themoviedb.org/t/p/w500${data.poster_path}'
+        src='${setPosters(poster_path)}'
         alt=''
         title=''
       />
@@ -55,34 +70,36 @@ function murckupCard(data) {
 
     <div class='film__information'>
       <div>
-        <h2 class='film__title'>${data.title}</h2>
+        <h2 class='film__title'>${title}</h2>
 
         <ul>
           <li class='film__item'>
             <p class='film__details'>Vote / Votes</p>
             <p class='film__info--uper'>
-            <span class='film__rating--orange'>${data.vote_average}</span>
+            <span class='film__rating--orange'>${vote_average}</span>
             <span class='film__rating--divider'> / </span>
-            <span>${data.vote_count}</span>
+            <span>${vote_count}</span>
           </p>
           </li>
           <li class='film__item'>
             <p class='film__details'>Popularity</p>
-            <p class='film__info--uper'>${data.popularity}</p>
+            <p class='film__info--uper'>${popularity}</p>
           </li>
           <li class='film__item'>
             <p class='film__details'>Original title</p>
-            <p>${data.original_title}</p>
+            <p class='film__info--uper'>${original_title}</p>
           </li>
           <li class='film__item'>
             <p class='film__details'>Genre</p>
-            </p>
+            <p class='film__about__text'>${
+              genres.map(genre => genre.name).join(', ') || 'N/A'
+            }</p>
           </li>
         </ul>
       </div>
       <div>
         <h3 class='film__about__title'>About</h3>
-        <p class='film__about__text'>${data.overview}
+        <p class='film__about__text'>${overview}
         </p>
       </div>
       <div class='film__button__wrapper'>
@@ -95,10 +112,10 @@ function murckupCard(data) {
         type='button'
         class='close__button__modal'
         data-action='close-modal'
-      >X</button>
+      >
+       <svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute"><path d="m8 8 14 14M8 22 22 8" stroke="#000" stroke-width="2"/></svg>
+    </button>
     </div>
   </div>
   `);
-  // const btnModalClos = document.querySelector('.close__button__modal');
-  // btnModalClos.addEventListener('click', () => onCloseBtn());
 }

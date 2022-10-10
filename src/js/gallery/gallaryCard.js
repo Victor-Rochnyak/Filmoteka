@@ -15,7 +15,7 @@ moviesApiService
     localStorage.setItem("genre", JSON.stringify(genres));
 
     // for (const { id, name } of genres) {
-    
+
     //   localStorage.setItem(`genre_${id}`, name);
     // }
   })
@@ -28,7 +28,7 @@ moviesApiService
     // renderSlider(results);
     makingMarkup(results);
     createPagination(total_results);
-    localStorage.setItem("film",JSON.stringify(results))
+    localStorage.setItem('film', JSON.stringify(results));
     // for (const result of results) {
     //   localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
     // }
@@ -64,8 +64,17 @@ function genresList(array) {
 // РОЗМІТКА
 export default function makingMarkup(results) {
   const markup = results
-    .map(({ title, name, poster_path, genre_ids, id, release_date, first_air_date}) => {
-      return `<div class="movie-card">
+    .map(
+      ({
+        title,
+        name,
+        poster_path,
+        genre_ids,
+        id,
+        release_date,
+        first_air_date,
+      }) => {
+        return `<div class="movie-card">
                 <img width="280" height="402" class="movie-card__img"
                 src="${URL_POSTER}/${poster_path}" alt="" data-id="${id}"
                 loading="lazy"/>
@@ -75,7 +84,9 @@ export default function makingMarkup(results) {
                         <b>${title || name}</b>
                     </p>
                     <p class="info-item">
-                        <b>${genresList(genre_ids)} | ${(release_date || first_air_date).slice(0, 4)}</b>
+                        <b>${genresList(genre_ids)} | ${(
+          release_date || first_air_date
+        ).slice(0, 4)}</b>
                     </p>
                     <p class="info-item">
                         <b>Comments</b>
@@ -85,7 +96,8 @@ export default function makingMarkup(results) {
                     </p>
                 </div>
             </div>`;
-    })
+      }
+    )
     .join('');
   return insertFilmsMarkup(markup);
 }
@@ -94,6 +106,23 @@ export default function makingMarkup(results) {
 function insertFilmsMarkup(filmsMarkup) {
   homeCardsContainer.insertAdjacentHTML('beforeend', filmsMarkup);
 }
+
+function renderSlider() {
+  const markup = moviesApiService.sliderFilms
+    .map(
+      ({ id, poster_path, title }) =>
+        `<div class="swiper-slider__wrapper swiper-slide">
+              <img class="slide-img"
+              src="${URL_POSTER}/${poster_path}" 
+              alt="${title}" "id=${id}" 
+              width=""
+              />
+
+          </div>`
+    )
+    .join('');
+
+  sliderContainerRef.insertAdjacentHTML('beforeend', markup);
 
 
 // function renderSlider() {
@@ -112,6 +141,7 @@ function insertFilmsMarkup(filmsMarkup) {
 //     .join('');
     
 //     sliderContainerRef.insertAdjacentHTML('beforeend', markup);
+
 
 //   const swiper = new Swiper('.swiper', {
 //     disableOnInteraction: true,
