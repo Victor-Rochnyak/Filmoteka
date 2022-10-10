@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="/src/sass/index.scss" />
+
+<header class="header__library">
+  <div class="container header__container">
+    <a class="link" href="/src/index.html">
+      <svg class="contact__icon" width="20" height="20">
+        <use href="/src/images/svg/symbol-defs.svg#icon-film"></use>
+      </svg>
+      <span class="logo">Filmoteka</span>
+    </a>
+    <nav class="navigation">
+      <ul class="navigation__menu list">
+        <li class="navigation__item">
+          <a class="navigation__link link" href="/src/index.html">Home</a>
+        </li>
+        <li class="navigation__item">
+          <a
+            class="navigation__link current link"
+            href="/src/partials/header-library.html"
+          >
+            My Library</a
+          >
+        </li>
+        <li class="navigation__item">
+          <a
+            class="link"
+            href="https://prytulafoundation.org/uk/home/support_page"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg class="support__icon" width="60" height="40">
+              <use
+                href="/src/images/svg/symbol-defs.svg#icon-Flag_of_Ukraine"
+              ></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+   <form>
+        <div role="group">
+          <ul class="storage">
+            <li class="storage__item">
+              <label class="storage__label">
+                <input
+                  type="radio"
+                  name="storage-btn"
+                  value="Watched"
+                  class="storage__input visuallyhidden"
+                  checked
+                />
+                <span class="storage__btn" id="js-WatchedButton">Watched</span>
+              </label>
+            </li>
+            <li class="storage__item">
+              <label class="storage__label">
+                <input
+                  type="radio"
+                  name="storage-btn"
+                  value="Queue"
+                  class="storage__input visuallyhidden"
+                />
+                <span class="storage__btn" id="js-QueueButton">Queue</span>
+              </label>
+            </li>
+          </ul>
+        </form>
+</header>
