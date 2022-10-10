@@ -1,0 +1,96 @@
+{{!-- {{#each this}}
+<li class="card__film">
+  <article class="card">
+    <a href="" class="card__link"">
+          {{#if poster_path}}
+          <img class=" card__img" src="https://www.themoviedb.org/t/p/w500{{poster_path}}"
+      onerror="this.onerror=null;this.src='https://ik.imagekit.io/tc8jxffbcvf/default-movie-portrait_EmJUj9Tda5wa.jpg?tr=fo-auto'" loading="lazy"
+      alt="{{title}}" title="{{title}}" data-id="{{id}}" />
+    {{else}}
+    <img class="card__img" src="https://ik.imagekit.io/tc8jxffbcvf/default-movie-portrait_EmJUj9Tda5wa.jpg?tr=fo-auto" loading="lazy" alt="{{title}}"
+      title="{{title}}" data-id="{{id}}" />
+    {{/if}}
+    </a>
+    <div class="card__wrap">
+      <a href="">
+        <h2 class="card__title" data-id="{{id}}">{{title}}</h2>
+      </a>
+      <div class="card__data">
+        <ul class="card__genres">
+          {{#if genres}}
+          {{#each genres}}
+          <li class="card__genre"><a href="" class="card__text">{{name}}{{#unless @last}},{{/unless}}</a></li>
+          {{/each}}
+          {{else}}<li class="card__genre card__text">N/A</li>
+          {{/if}}
+        </ul>
+        {{#if year}}
+        <p class="card__year card__text">| {{year}}</p>
+        {{else}}<p class="card__text">| N/A</p>
+        {{/if}}
+      </div>
+    </div>
+  </article>
+</li>
+{{/each}} --}}
+
+<div class='modal__backdrop'></div>
+
+<div class='modal__container'>
+  <div class='film__image'>
+    <img
+      class='image'
+      src='https://www.themoviedb.org/t/p/w500${poster_path}'
+      alt='${title}'
+      title='${title}'
+    />
+  </div>
+
+  <div class='film__information'>
+    <div>
+      <h2 class='film__title'>${title}</h2>
+      <ul>
+        <li class='film__item'>
+          <p class='film__details'>Vote / Votes</p>
+          <p class='film__info--uper'>
+            <span class='film__rating--orange'>${vote_average}</span>
+            <span class='film__rating--divider'> / </span>
+            <span>${vote_count}</span>
+          </p>
+        </li>
+        <li class='film__item'>
+          <p class='film__details'>Popularity</p>
+          <p class='film__info--uper'>${popularity}</p>
+        </li>
+        <li class='film__item'>
+          <p class='film__details'>Original title</p>
+          <p>${original_title}</p>
+        </li>
+        <li class='film__item'>
+          <p class='film__details'>Genre</p>
+          <p class='film__info'>
+            <span>${genresList(genre_ids)}</span>
+
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3 class='film__about__title'>About</h3>
+      <p class='film__about__text'>
+        ${overview}
+      </p>
+    </div>
+    <div class='film__button__wrapper'>
+      <button type='button' class='film__button btn__watch' data-id='${id}'>Add
+        to watched</button>
+      <button type='button' class='film__button btn__queue' data-id='${id}'>Add
+        to queue</button>
+    </div>
+    <button
+      type='button'
+      class='close__button'
+      data-action='close-modal'
+    ></button>
+  </div>
+</div>

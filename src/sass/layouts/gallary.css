@@ -1,0 +1,21 @@
+@media screen and (max-width: 767.98px) {
+  .cards__list {
+    grid-template-columns: 1fr;
+    display: grid;
+    grid-gap: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .cards__list {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-gap: 30px;
+  }
+}
+@media screen and (min-width: 1199.98px) {
+  .cards__list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    grid-gap: 30px;
+  }
+}/*# sourceMappingURL=gallary.css.map */
