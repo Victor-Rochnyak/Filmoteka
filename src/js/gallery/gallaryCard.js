@@ -12,7 +12,7 @@ const moviesApiService = new MoviesApiService();
 moviesApiService
   .fetchGenres()
   .then(({ genres }) => {
-    localStorage.setItem('genre', JSON.stringify(genres));
+    localStorage.setItem("genre", JSON.stringify(genres));
 
     // for (const { id, name } of genres) {
 
@@ -25,7 +25,7 @@ moviesApiService
 moviesApiService
   .fetchTrendingMovies()
   .then(({ results, total_results }) => {
-    renderSlider(results);
+    // renderSlider(results);
     makingMarkup(results);
     createPagination(total_results);
     localStorage.setItem('film', JSON.stringify(results));
@@ -37,16 +37,27 @@ moviesApiService
 
 function genresList(array) {
   let genre_names = '';
-
+  let foundGenres = 0;
+  const arrGenres = JSON.parse(localStorage.getItem('genre'));
   for (const id of array) {
-    const genre_name = localStorage.getItem(`genre_${id}`);
+    const genre_name = arrGenres.find(genre => id === genre.id);
+    //const genre_name = localStorage.getItem(`genre_${id}`);
     if (!genre_name) {
       continue;
     }
     if (genre_names) {
       genre_names += ', ';
     }
-    genre_names += genre_name;
+    if (foundGenres === 2) {
+      genre_names += 'Others';
+      break;
+    }  
+      
+    foundGenres += 1;
+    genre_names += genre_name.name;
+  }
+  if (!genre_names) {
+    genre_names = 'unknown';
   }
   return genre_names;
 }
@@ -113,66 +124,85 @@ function renderSlider() {
 
   sliderContainerRef.insertAdjacentHTML('beforeend', markup);
 
-  const swiper = new Swiper('.swiper', {
-    disableOnInteraction: true,
-    slidesPerView: 7,
-    slidesPerGroup: 1,
-    spaceBetween: 65,
-    speed: 2500,
-    // centralSlides: true,
-    loop: true,
 
-    grabCursor: true,
-    effect: 'coverflow',
-    coverflowEffect: {
-      //modifier:5, //для mobile
-      depth: 70,
-      rotate: 8,
-      stretch: 50,
-      slideShadows: false,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    autoplay: {
-      delay: 1,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    freeMode: true,
+// function renderSlider() {
+//   const markup = moviesApiService.sliderFilms
+//     .map(
+//       ({ id, poster_path, title }) =>
+//         `<div class="swiper-slider__wrapper swiper-slide">
+//               <img class="slide-img"
+//               src="${URL_POSTER}/${poster_path}" 
+//               alt="${title}" "id=${id}" 
+//               width=""
+//               />
 
-    breakpoints: {
-      768: {
-        loop: true,
-        slidesPerView: 3,
-        slidesPerGroup: 1,
-        spaceBetween: 60,
-        disableOnInteraction: true,
-        navigation: {
-          enabled: true,
-        },
-      },
-      1200: {
-        loop: true,
-        slidesPerView: 5,
-        slidesPerGroup: 1,
-        spaceBetween: 65,
-        disableOnInteraction: true,
-        navigation: {
-          enabled: true,
-        },
-      },
-      1500: {
-        loop: true,
-        slidesPerView: 5,
-        slidesPerGroup: 1,
-        spaceBetween: 58,
-        disableOnInteraction: true,
-        navigation: {
-          enabled: true,
-        },
-      },
-    },
-  });
-}
+//           </div>`
+//     )
+//     .join('');
+    
+//     sliderContainerRef.insertAdjacentHTML('beforeend', markup);
+
+
+//   const swiper = new Swiper('.swiper', {
+//     disableOnInteraction: true,
+//     slidesPerView: 7,
+//     slidesPerGroup: 1,
+//     spaceBetween: 65,
+//     speed: 2500,
+//     // centralSlides: true,
+//     loop: true,
+
+//     grabCursor: true,
+//     effect: 'coverflow',
+//     coverflowEffect: {
+//       //modifier:5, //для mobile
+//       depth: 70,
+//       rotate: 8,
+//       stretch: 50,
+//       slideShadows: false,
+//     },
+//     navigation: {
+//       nextEl: '.swiper-button-next',
+//       prevEl: '.swiper-button-prev',
+//     },
+//     autoplay: {
+//       delay: 1,
+//       disableOnInteraction: false,
+//       pauseOnMouseEnter: true,
+//     },
+//     freeMode: true,
+
+//     breakpoints: {
+//       768: {
+//         loop: true,
+//         slidesPerView: 3,
+//         slidesPerGroup: 1,
+//         spaceBetween: 60,
+//         disableOnInteraction: true,
+//         navigation: {
+//           enabled: true,
+//         },
+//       },
+//       1200: {
+//         loop: true,
+//         slidesPerView: 5,
+//         slidesPerGroup: 1,
+//         spaceBetween: 65,
+//         disableOnInteraction: true,
+//         navigation: {
+//           enabled: true,
+//         },
+//       },
+//       1500: {
+//         loop: true,
+//         slidesPerView: 5,
+//         slidesPerGroup: 1,
+//         spaceBetween: 58,
+//         disableOnInteraction: true,
+//         navigation: {
+//           enabled: true,
+//         },
+//       },
+//     },
+//   });
+// }

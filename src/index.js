@@ -9,3 +9,4 @@ import './js/footer/footer';
 import './js/pagination/pagination';
 import './js/scroll';
 import './js/gallery/modal-form';
+import './js/header/lightSide';
