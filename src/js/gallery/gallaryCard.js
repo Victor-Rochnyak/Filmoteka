@@ -7,14 +7,17 @@ const homeCardsContainer = document.querySelector('.cards__list--home');
 const sliderContainerRef = document.querySelector('.swiper-wrapper');
 const moviesApiService = new MoviesApiService();
 
-
+let genresItem = [];
 //  ЖАНРИ ДО LOCALSTORAGE
 moviesApiService
   .fetchGenres()
   .then(({ genres }) => {
-    for (const { id, name } of genres) {
-      localStorage.setItem(`genre_${id}`, name);
-    }
+    localStorage.setItem("genre",JSON.stringify(genres))
+
+    // for (const { id, name } of genres) {
+    //   genresItem 
+    //   localStorage.setItem(`genre_${id}`, name);
+    // }
   })
   .catch(error => console.log(error));
 
@@ -25,9 +28,10 @@ moviesApiService
     renderSlider(results);
     makingMarkup(results);
     createPagination(total_results);
-    for (const result of results) {
-      localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
-    }
+    localStorage.setItem("film",JSON.stringify(results))
+    // for (const result of results) {
+    //   localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
+    // }
   })
   .catch(error => console.log(error));
 
