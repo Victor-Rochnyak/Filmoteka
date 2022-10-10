@@ -23,7 +23,7 @@ function onOpenModal(evt) {
   fetchOneMovieInfo(movie_id).then(data => {
     murckupCard(data);
 
-    // додаємо слухача на кнопку закриття
+    // додаємо слухача на кнопку закриттяя
 
     const btnModalClos = document.querySelector('.close__button__modal');
     btnModalClos.addEventListener('click', () => onCloseBtn());
