@@ -6,7 +6,7 @@
 # Website - "FILMOTECA"
 A short-term team project by 9 collaborators.
 
-![Demonstration]()
+![Demonstration](https://github.com/Victor-Rochnyak/Filmoteka/blob/main/src/images/demonstration/demo1.png)
 
 
 - Look at [**Layout (Figma)**](<https://www.figma.com/file/HQe3RRxC8g01HNSSPBuNy1/Filmoteka-(Copy)-(Copy)-(Copy)?node-id=50631%3A2>)
@@ -20,8 +20,7 @@ The project was ready on time within 7 days.
 
  * Javascript (variables, types, branching, arrays, function, object,
 spread/rest, destructuring, callbacks, arrays methods, pure functions
-method chaining, context(this), function methods, prototypes, classes
-OOP, DOM, events, event delegation, throttle/debounce, lazy loading
+method chaining,  function methods, prototypes, DOM, events, throttle/debounce, lazy loading
 few node.js, npm, code modularity, webpack/parcel
 json, web storage, asynchrony, date and time
 promises, HTTP/s, rest API, AJAX, tui pagination, async/await, fetch, axios, handlerbars) <br/>
