@@ -126,3 +126,11 @@ export default class MoviesApiService {
 }
 
 
+// FETCHING FILMS USING FORM
+// fetchSearchingMovies() {
+//   const url = `${BASE_TRENDING_MOVIES_URL}search/movie?api_key=${API_KEY}&page=${this._page}&query=${this.searchQuery}`;
+
+//   return fetch(url).then(response => {
+//     return response.json();
+//   });
+// }
