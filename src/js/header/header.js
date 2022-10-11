@@ -101,11 +101,17 @@
 // // }
 import makingMarkup from '../gallery/gallaryCard';
 import API_KEY from '../api/apiKey';
+import { createPagination } from '../pagination/pagination-query';
+import MoviesApiService from '../api/api';
 // import MoviesApiService from '../api/api';
 
 const input = document.querySelector('.search__input');
 const btn = document.querySelector('.search__button');
 const searchForm = document.querySelector('.search');
+const searchFilms = input.value.trim();
+
+const movieApiServise = new MoviesApiService();
+movieApiServise.query = searchFilms;
 
 // MovieSearch('game')
 //Функція вітягує фільми
@@ -126,6 +132,7 @@ async function searchMovies(event) {
   clearGallaryContainer();
   // renderMarkupSearchFilms()
   makingMarkup(data);
+  createPagination(searchFilms);
   input.value = '';
 }
 // малює контейнер для фільміф з інпуту
