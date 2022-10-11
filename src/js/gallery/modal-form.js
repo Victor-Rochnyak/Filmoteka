@@ -4,7 +4,6 @@ const galleryFilm = document.querySelector('.cards__list--home');
 const modalEl = document.querySelector('.modal');
 
 // Ф-ція фетчу одного фільму за id.
-
 function fetchOneMovieInfo(movie_id) {
   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
   return fetch(url).then(response => {
@@ -17,6 +16,8 @@ galleryFilm.addEventListener('click', onOpenModal);
 // Ф-ція відкриття модалки
 function onOpenModal(evt) {
   evt.preventDefault();
+  evt.stopPropagation();
+  closeEsc();
 
   const movie_id = evt.target.dataset.id;
 
@@ -24,7 +25,6 @@ function onOpenModal(evt) {
     murckupCard(data);
 
     // додаємо слухача на кнопку закриттяя
-
     const btnModalClos = document.querySelector('.close__button__modal');
     btnModalClos.addEventListener('click', () => onCloseBtn());
   });
@@ -36,7 +36,23 @@ function onOpenModal(evt) {
 function onCloseBtn() {
   modalEl.classList.remove('is-open');
 }
-
+// Close modal by Escape
+function closeEsc() {
+  window.addEventListener('keydown', closeModalByEsc);
+  function closeModalByEsc(e) {
+    if (e.code === 'Escape') {
+      onCloseBtn();
+      window.removeEventListener('keydown', closeModalByEsc);
+    }
+  }
+}
+// ____________local st----
+const filmsLocalSt = localStorage.getItem(`film`);
+const arrayFilmLocalSt = JSON.parse(filmsLocalSt);
+const oneFilmById = arrayFilmLocalSt.find(film => film.id === 616820);
+console.log(oneFilmById);
+// ____________local st----
+// render film card
 function murckupCard({
   poster_path,
   title,
