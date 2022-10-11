@@ -5,6 +5,7 @@ import { createPagination } from '../pagination/pagination';
 
 const homeCardsContainer = document.querySelector('.cards__list--home');
 const sliderContainerRef = document.querySelector('.swiper-wrapper');
+const input = document.querySelector('.search__input');
 const moviesApiService = new MoviesApiService();
 
 // let genresItem = [];
@@ -15,7 +16,6 @@ moviesApiService
     localStorage.setItem("genre", JSON.stringify(genres));
 
     // for (const { id, name } of genres) {
-
     //   localStorage.setItem(`genre_${id}`, name);
     // }
   })
@@ -26,7 +26,7 @@ moviesApiService
   .fetchTrendingMovies()
   .then(({ results, total_results }) => {
     // renderSlider(results);
-    makingMarkup(results);
+    
     createPagination(total_results);
     localStorage.setItem('film', JSON.stringify(results));
     // for (const result of results) {
@@ -86,21 +86,15 @@ export default function makingMarkup(results) {
                     <p class="info-item">
                         <b>${genresList(genre_ids)} | ${(
           release_date || first_air_date
-        ).slice(0, 4)}</b>
-                    </p>
-                    <p class="info-item">
-                        <b>Comments</b>
-                    </p>
-                    <p class="info-item">
-                        <b>Downloads</b>
-                    </p>
+        ).slice(0, 4)}</b> 
+                 
                 </div>
             </div>`;
       }
     )
     .join('');
   return insertFilmsMarkup(markup);
-}
+  
 
 // Функція для вставки розмітки в контейнер
 function insertFilmsMarkup(filmsMarkup) {
@@ -205,4 +199,5 @@ function renderSlider() {
 //       },
 //     },
 //   });
-// }
+}
+}

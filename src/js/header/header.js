@@ -99,3 +99,73 @@
 // //   refs.filmsSearchList.innerHTML = '';
 // //   refs.filmsSearchList.classList.remove('search-form__list--bgc');
 // // }
+import makingMarkup from '../gallery/gallaryCard';
+import API_KEY from '../api/apiKey';
+// import MoviesApiService from '../api/api';
+
+const input = document.querySelector('.search__input');
+const btn = document.querySelector('.search__button');
+const searchForm = document.querySelector('.search');
+
+// MovieSearch('game')
+//Функція вітягує фільми
+async function MovieSearch(searchFilm) {
+  const resp = await fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchFilm}`
+  );
+  const respData = await resp.json();
+  return respData.results;
+}
+// при клікі на кнопку ввідображає фільми з інпуту
+btn.addEventListener('click', searchMovies);
+async function searchMovies(event) {
+  event.preventDefault();
+
+  const data = await MovieSearch(input.value);
+  console.log(input.value);
+  clearGallaryContainer();
+  // renderMarkupSearchFilms()
+  makingMarkup(data);
+  input.value = '';
+}
+// малює контейнер для фільміф з інпуту
+function clearGallaryContainer() {
+  const gallaryContainer = document.querySelector('.cards__list--home');
+  gallaryContainer.innerHTML = '';
+}
+
+
+
+
+//   const moviesApiService = new MoviesApiService();
+
+// searchForm.addEventListener('submit', onSearch);
+// function onSearch(event) {
+//   event.preventDefault();
+//   moviesApiService.query = event.currentTarget.elements.query.value;
+//   console.log(moviesApiService.query);
+// }
+
+
+
+// const filmsSearchList = document.querySelector('.search-form__list');
+// функція рендерить розмітку випадаючого меню
+//  function renderMarkupSearchFilms(films) {
+//     console.log(films)
+//     searchForm.innerHTML = '';
+
+//     searchForm.classList.remove('search');
+
+//     // якщо запит не коректний
+//     if(films.results.length === 0) {
+//       const markup = '<p class="search-form--badrequest">Search result not successful. Enter the correct movie name</p>';
+//       searchForm.innerHTML = markup;
+//       return;
+//     };
+//       //рендер фільмів у випадаючому списку
+//       const markup = films.results.slice(0,5).map(( { title, vote_average} ) => {
+//         return `<li class="search-form__item">${title} - ${vote_average}</li>`;
+//       }).join('');
+
+//       searchForm.classList.add('search');
+//     }
