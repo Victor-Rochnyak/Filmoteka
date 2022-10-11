@@ -43,27 +43,63 @@
           <ul class="storage">
             <li class="storage__item">
               <label class="storage__label">
-                <input
-                  type="radio"
-                  name="storage-btn"
-                  value="Watched"
-                  class="storage__input visuallyhidden"
-                  checked
-                />
+                <button class="storage__input visuallyhidden activ" >
                 <span class="storage__btn" id="js-WatchedButton">Watched</span>
+                </button>
               </label>
             </li>
             <li class="storage__item">
               <label class="storage__label">
-                <input
-                  type="radio"
-                  name="storage-btn"
-                  value="Queue"
-                  class="storage__input visuallyhidden"
-                />
+                <button class="storage__input visuallyhidden">
                 <span class="storage__btn" id="js-QueueButton">Queue</span>
+                </button>
               </label>
             </li>
           </ul>
         </form>
 </header>
+<main>
+  <section class="film-cards color">
+  <h2 class="visually-hidden">Film cards</h2>
+  <div class="cards__container container">
+    <ul class="cards__list cards__list--home list">
+      <div class="movie-card">
+                <img width="280" height="402" class="movie-card__img" src="https://image.tmdb.org/t/p/w500///2EewmxXe72ogD0EaWM8gqa0ccIw.jpg" alt="" data-id="30984" loading="lazy">
+
+                <div class="info">
+                    <p class="info-item">
+                        <b>Bleach</b>
+                    </p>
+                    <p class="info-item">
+                        <b>Animation | 2004</b>
+                    </p>
+                    <p class="info-item">
+                        <b>Comments</b>
+                    </p>
+                    <p class="info-item">
+                        <b>Downloads</b>
+                    </p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img width="280" height="402" class="movie-card__img" src="https://image.tmdb.org/t/p/w500///qvg75YJMfbHeDNirUrrgBMQImRn.jpg" alt="" data-id="1024530" loading="lazy">
+
+                <div class="info">
+                    <p class="info-item">
+                        <b>Grimcutty</b>
+                    </p>
+                    <p class="info-item">
+                        <b>Horror | 2022</b>
+                    </p>
+                    <p class="info-item">
+                        <b>Comments</b>
+                    </p>
+                    <p class="info-item">
+                        <b>Downloads</b>
+                    </p>
+                </div>
+            </div>
+    </ul>
+  </div>
+</section>
+</main>
