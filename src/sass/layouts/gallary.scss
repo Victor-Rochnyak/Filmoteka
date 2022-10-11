@@ -1,25 +1,76 @@
-.cards__list{
-    @media screen and(max-width:767.98px) {
-        
-          grid-template-columns: 1fr;
-            display: grid;
-            grid-gap: 30px;
-        }
-       
-      
-       @media screen and(min-width:768px) {
-      
-          grid-template-columns: 1fr 1fr;
-          display: grid;
-          grid-gap: 30px;
-        }
-       
-      
-      @media screen and(min-width:1199.98px) {
-        
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            display: grid;
-            grid-gap: 30px;
-          }
-     
+.cards__list {
+  @media screen and(max-width:767.98px) {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    grid-template-columns: 1fr;
+    display: grid;
+    grid-gap: 30px;
+    img {
+      width: 280px;
+      border-radius: 5px;
+    }
+    .info-item {
+      font-weight: 500;
+      font-style: normal;
+      font-size: 12px;
+      line-height: 16px;
+      color: var(--accent-color);
+    }
+
+    .info-item:not(:last-child) {
+      color: var(--first-text-color);
+      text-transform: uppercase;
+    }
+  }
+
+  @media screen and(min-width:768px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-gap: 30px;
+    img {
+      width: 336px;
+      height: 455px;
+      border-radius: 5px;
+    }
+    .info-item {
+      font-weight: 500;
+      font-style: normal;
+      font-size: 12px;
+      line-height: 16px;
+      color: var(--accent-color);
+    }
+
+    .info-item:not(:last-child) {
+      color: var(--first-text-color);
+      text-transform: uppercase;
+    }
+  }
+
+  @media screen and(min-width:1280px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-gap: 30px;
+
+    img {
+      width: 395px;
+      height: 574px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .info-item {
+      font-weight: 500;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 24px;
+      color: var(--accent-color);
+    }
+    .info-item:not(:last-child) {
+      color: var(--first-text-color);
+      text-transform: uppercase;
+    }
+  }
 }

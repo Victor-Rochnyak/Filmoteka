@@ -1,9 +1,22 @@
+::-webkit-input-placeholder {
+  color: white;
+}
+::-webkit-input-placeholder {
+  color: white;
+}
+:-moz-placeholder {
+  color: white;
+}
+::-moz-placeholder {
+  color: white;
+}
+:-ms-input-placeholder {
+  color: white;
+}
 .header {
-  padding-top: 40px;
-  padding-bottom: 80px;
   background-repeat: no-repeat;
   background-size: cover;
-  // width: 100%;
+  width: 100%;
   background-image: url(../images/mob-background-home-1x.jpeg);
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
@@ -33,7 +46,10 @@
   justify-content: center;
   margin-bottom: 41px;
 }
-
+.header__home {
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
 .navigation {
   font-weight: 500;
   font-size: 12px;
@@ -114,16 +130,20 @@
   height: 30px;
   padding: 4px 0;
   border: none;
-  border-bottom: 0.5px solid #fff;
+  border-bottom: 0.5px solid white;
   outline: none;
   background-color: transparent;
-  color: #fff;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.17;
   // transition-property: border-bottom;
   // transition-duration: 0.25s;
   // transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::-webkit-input-placeholder {
+  color: white;
 }
 .search__button {
   position: absolute;
