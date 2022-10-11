@@ -37,9 +37,7 @@ export function createPagination(total_results) {
   const mediaQuery = window.matchMedia('(max-width: 768px)');
   mediaQuery.addEventListener('change', handleMobileChange);
   function handleMobileChange(event) {
-    // console.log('EVENT: ', event);
     if (event.matches) {
-      // console.log('OPTIONS: ', options);
       options.visiblePages = 3;
     }
   }
@@ -54,10 +52,9 @@ export function createPagination(total_results) {
       .fetchTrendingMovies()
       .then(({ results }) => {
         makingMarkup(results);
-
-        for (const result of results) {
-          localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
-        }
+        // for (const result of results) {
+        //   localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
+        // }
       })
       .catch(error => console.log(error));
   });

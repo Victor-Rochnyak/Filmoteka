@@ -122,7 +122,7 @@ async function searchMovies(event) {
   event.preventDefault();
 
   const data = await MovieSearch(input.value);
-  console.log(input.value);
+  // console.log(input.value);
   clearGallaryContainer();
   // renderMarkupSearchFilms()
   makingMarkup(data);
