@@ -8,23 +8,25 @@
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
-      background-image: url(../images/mob-background-home-2x.jpeg);
-    }
+    background-image: url(../images/mob-background-home-2x.jpeg);
+  }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     background-image: url(../images/tab-background-home-1x.jpeg);
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-        background-image: url(../images/tab-background-home-2x.jpeg);
-  }}
+      background-image: url(../images/tab-background-home-2x.jpeg);
+    }
+  }
   @media screen and (min-width: 1280px) {
     background-image: url(../images/desk-background-home-1x.jpeg);
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-        background-image: url(../images/desk-background-home-2x.jpeg);
+      background-image: url(../images/desk-background-home-2x.jpeg);
+    }
   }
-}}
+}
 .header__container {
   display: flex;
   align-items: center;
@@ -74,12 +76,12 @@
   }
   cursor: pointer;
 }
-.support__icon{
-animation: pulse 4s infinite;
+.support__icon {
+  animation: pulse 4s infinite;
 
   @keyframes pulse {
     50% {
-      transform:  scale(0.5);
+      transform: scale(0.5);
     }
   }
 }
@@ -137,7 +139,6 @@ animation: pulse 4s infinite;
 
 .search__button-icon:hover,
 .search__button-icon:focus {
-
   animation: scales 2s infinite;
   @keyframes scales {
     50% {
