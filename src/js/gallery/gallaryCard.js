@@ -26,6 +26,7 @@ moviesApiService
   .fetchTrendingMovies()
   .then(({ results, total_results }) => {
     // renderSlider(results);
+    makingMarkup(results);
     
     createPagination(total_results);
     localStorage.setItem('film', JSON.stringify(results));
