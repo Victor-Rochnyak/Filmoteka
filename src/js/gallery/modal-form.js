@@ -1,15 +1,15 @@
-import API_KEY from '../api/apiKey';
+// import API_KEY from '../api/apiKey';
 
 const galleryFilm = document.querySelector('.cards__list--home');
 const modalEl = document.querySelector('.modal');
 
 // Ф-ція фетчу одного фільму за id.
-function fetchOneMovieInfo(movie_id) {
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
-  return fetch(url).then(response => {
-    return response.json();
-  });
-}
+// function fetchOneMovieInfo(movie_id) {
+//   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
+//   return fetch(url).then(response => {
+//     return response.json();
+//   });
+// }
 
 galleryFilm.addEventListener('click', onOpenModal);
 
@@ -18,23 +18,42 @@ function onOpenModal(evt) {
   evt.preventDefault();
   evt.stopPropagation();
   closeEsc();
+  modalEl.classList.add('is-open');
 
   const movie_id = evt.target.dataset.id;
+  console.log(movie_id);
+  // ____________local st----
+  const filmsLocalSt = localStorage.getItem(`film`);
+  const arrayFilmLocalSt = JSON.parse(filmsLocalSt);
+  const oneFilmById = arrayFilmLocalSt.find(film => film.id == movie_id);
+  console.log(oneFilmById);
+  // ____________local st----
 
-  fetchOneMovieInfo(movie_id).then(data => {
-    murckupCard(data);
+  murckupCard(oneFilmById);
+  closeBtn();
 
-    // додаємо слухача на кнопку закриттяя
-    const btnModalClos = document.querySelector('.close__button__modal');
-    btnModalClos.addEventListener('click', () => onCloseBtn());
-  });
+  // стара реалізація рендерингу за допомогою FETCH
 
-  modalEl.classList.add('is-open');
+  // const btnModalClos = document.querySelector('.close__button__modal');
+  // btnModalClos.addEventListener('click', () => onCloseBtn());
+
+  // fetchOneMovieInfo(movie_id).then(data => {
+  //   console.log(data);
+  //   murckupCard(data);
+
+  //   // додаємо слухача на кнопку закриттяя
+  //   const btnModalClos = document.querySelector('.close__button__modal');
+  //   btnModalClos.addEventListener('click', () => onCloseBtn());
+  // });
 }
 
 // Ф-ція закриття модалки
 function onCloseBtn() {
   modalEl.classList.remove('is-open');
+}
+function closeBtn() {
+  const btnModalClos = document.querySelector('.close__button__modal');
+  btnModalClos.addEventListener('click', () => onCloseBtn());
 }
 // Close modal by Escape
 function closeEsc() {
@@ -46,13 +65,28 @@ function closeEsc() {
     }
   }
 }
-// ____________local st----
-const filmsLocalSt = localStorage.getItem(`film`);
-const arrayFilmLocalSt = JSON.parse(filmsLocalSt);
-const oneFilmById = arrayFilmLocalSt.find(film => film.id === 616820);
-console.log(oneFilmById);
-// ____________local st----
+
 // render film card
+function genresList(array) {
+  let array_genre_names = [];
+  let genre_namess = '';
+
+  for (const id of array) {
+    try {
+      const genre_name = localStorage.getItem(`genre`);
+      const arrayAllGenres = JSON.parse(genre_name);
+      const arrayIdGenres = arrayAllGenres.find(genre => genre.id == id);
+
+      array_genre_names.push(arrayIdGenres.name || 'n/a');
+
+      genre_namess = array_genre_names.join(', ');
+    } catch (error) {
+      console.error('Set state error: ', error.message);
+    }
+  }
+  return genre_namess;
+}
+
 function murckupCard({
   poster_path,
   title,
@@ -61,7 +95,8 @@ function murckupCard({
   popularity,
   original_title,
   overview,
-  genres,
+  genre_ids,
+  name,
 }) {
   function setPosters(poster) {
     if (poster === null) {
@@ -86,7 +121,7 @@ function murckupCard({
 
     <div class='film__information'>
       <div>
-        <h2 class='film__title'>${title}</h2>
+        <h2 class='film__title'>${title || name}</h2>
 
         <ul>
           <li class='film__item'>
@@ -103,13 +138,12 @@ function murckupCard({
           </li>
           <li class='film__item'>
             <p class='film__details'>Original title</p>
-            <p class='film__info--uper'>${original_title}</p>
+            <p class='film__info--uper'>${original_title || name}</p>
           </li>
           <li class='film__item'>
             <p class='film__details'>Genre</p>
-            <p class='film__about__text'>${
-              genres.map(genre => genre.name).join(', ') || 'N/A'
-            }</p>
+            <p class='film__about__text'>${genresList(genre_ids)}
+            </p>
           </li>
         </ul>
       </div>
