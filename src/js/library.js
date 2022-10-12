@@ -1,4 +1,5 @@
 import { load, save, remove } from './gallery/local-st-load-remove-save';
+import './gallery/modal-for-library';
 
 const libGalleryRef = document.querySelector('.cards__list');
 const btnWatched = document.querySelector('.btnWatched');
@@ -7,50 +8,56 @@ const btnQueue = document.querySelector('.btnQueue');
 btnWatched.addEventListener('click', showListWatched);
 btnQueue.addEventListener('click', showListQueue);
 
-console.log("В библиотеке");
+console.log('В библиотеке');
 
 function showListWatched(e) {
-    
-    libGalleryRef.innerHTML = '';
-    btnWatched.classList.add('activ')
-    btnQueue.classList.remove('activ');
-    console.log(btnWatched);
-    console.log(btnQueue);
-    
-    const listWatched = load('watched');
-    console.log(listWatched);
+  e.preventDefault();
+  libGalleryRef.innerHTML = '';
+  btnWatched.classList.add('activ');
+  btnQueue.classList.remove('activ');
+  console.log(btnWatched);
+  console.log(btnQueue);
 
-    if (!listWatched) {
-        console.log('Вывести заглушку');
-    }
-    
-    Render(listWatched);
- }
+  const listWatched = load('watched');
+  console.log(listWatched);
+
+  if (!listWatched) {
+    console.log('Вывести заглушку');
+  }
+
+  Render(listWatched);
+}
 
 function showListQueue(e) {
-    e.preventDefault();
-    libGalleryRef.innerHTML = '';
-    btnWatched.classList.remove('activ')
-    btnQueue.classList.add('activ');
-    console.log(btnWatched);
-    console.log(btnQueue);
-    
-    const listQueue = load('queue');
-    console.log(listQueue);
+  e.preventDefault();
+  libGalleryRef.innerHTML = '';
+  btnWatched.classList.remove('activ');
+  btnQueue.classList.add('activ');
+  console.log(btnWatched);
+  console.log(btnQueue);
 
-    if (!listQueue) {
-        console.log('Вывести заглушку');
-    }    
-    Render(listQueue);
- }
+  const listQueue = load('queue');
+  console.log(listQueue);
+
+  if (!listQueue) {
+    console.log('Вывести заглушку');
+  }
+  Render(listQueue);
+}
 
 function Render(obj) {
-    const markup = obj
-        .map(
-            ({
-                title, name, poster_path, genre_ids, id, release_date, first_air_date,
-            }) => {
-                return `<div class="movie-card">
+  const markup = obj
+    .map(
+      ({
+        title,
+        name,
+        poster_path,
+        genre_ids,
+        id,
+        release_date,
+        first_air_date,
+      }) => {
+        return `<div class="movie-card">
                 <img width="280" height="402" class="movie-card__img"
                 src="${setPosters(poster_path)}" alt="" data-id="${id}"
                 loading="lazy"/>
@@ -61,13 +68,14 @@ function Render(obj) {
                     </p>
                     <p class="info-item">
                         <b>${genresList(genre_ids)} | ${(
-                        release_date || first_air_date
-                    ).slice(0, 4)}</b>                  
+          release_date || first_air_date
+        ).slice(0, 4)}</b>                  
                 </div>
             </div>`;
-            }
-        ).join('');
-    libGalleryRef.insertAdjacentHTML('beforeend', markup);
+      }
+    )
+    .join('');
+  libGalleryRef.insertAdjacentHTML('beforeend', markup);
 }
 
 function setPosters(poster_path) {
