@@ -1,4 +1,5 @@
 // import API_KEY from '../api/apiKey';
+import { load, save, remove } from './local-st-load-remove-save';
 
 const galleryFilm = document.querySelector('.cards__list--home');
 const modalEl = document.querySelector('.modal');
@@ -12,7 +13,7 @@ const modalEl = document.querySelector('.modal');
 // }
 
 galleryFilm.addEventListener('click', onOpenModal);
-
+let movie_id;
 // Ф-ція відкриття модалки
 function onOpenModal(evt) {
   evt.preventDefault();
@@ -20,31 +21,119 @@ function onOpenModal(evt) {
   closeEsc();
   modalEl.classList.add('is-open');
 
-  const movie_id = evt.target.dataset.id;
-  console.log(movie_id);
-  // ____________local st----
+  // const movie_id = evt.target.dataset.id;
+  movie_id = evt.target.dataset.id;
+
+  // ____________local st----закидаєм картку фільму в папка film
   const filmsLocalSt = localStorage.getItem(`film`);
   const arrayFilmLocalSt = JSON.parse(filmsLocalSt);
-  const oneFilmById = arrayFilmLocalSt.find(film => film.id == movie_id);
-  console.log(oneFilmById);
+  const oneFilmById = arrayFilmLocalSt.find(
+    film => film.id === Number(movie_id)
+  );
+
   // ____________local st----
+  // const firstLocalSt = save('watched', []);
 
   murckupCard(oneFilmById);
   closeBtn();
 
-  // стара реалізація рендерингу за допомогою FETCH
+  // --------test-btn--------------
+  const btnWatchEl = document.querySelector('.btn__watch');
+  const btnQueueEl = document.querySelector('.btn__queue');
 
-  // const btnModalClos = document.querySelector('.close__button__modal');
-  // btnModalClos.addEventListener('click', () => onCloseBtn());
+  btnWatchEl.addEventListener('click', onLibraruWatch);
+  btnQueueEl.addEventListener('click', onLibraruQueue);
 
-  // fetchOneMovieInfo(movie_id).then(data => {
-  //   console.log(data);
-  //   murckupCard(data);
+  // відпрацювання кнопки проглянуте
+  function onLibraruWatch(ev) {
+    const btnEl = ev.target;
 
-  //   // додаємо слухача на кнопку закриттяя
-  //   const btnModalClos = document.querySelector('.close__button__modal');
-  //   btnModalClos.addEventListener('click', () => onCloseBtn());
-  // });
+    if (!load('watched')) {
+      const firstLocalSt = save('watched', []);
+    }
+
+    if (btnEl.getAttribute('data-show') === 'true') {
+      addWatchedLocalStorage(oneFilmById);
+    }
+    if (btnEl.getAttribute('data-show') === 'false') {
+      removeFromWatchedList(movie_id);
+    }
+
+    changeTextBtnWatch(btnEl);
+  }
+
+  function onLibraruQueue(ev) {
+    const btnEl = ev.target;
+    changeTextBtnQueue(btnEl);
+  }
+  // --------test-btn--------------
+}
+let arrayFilmsWatched = [];
+let localWatchListJson = [];
+
+function addWatchedLocalStorage(obj) {
+  // перевірка, чи є вже ця картка в сховищі
+
+  localWatchListJson = load('watched');
+
+  if (localWatchListJson) {
+    watchList = localWatchListJson;
+  }
+
+  let index1 = watchList.findIndex(film => film.id === Number(movie_id));
+  if (index1 != -1) {
+    return;
+  }
+
+  // перевірка, чи є вже ця картка в сховищі
+
+  arrayFilmsWatched = localWatchListJson;
+
+  arrayFilmsWatched.push(obj);
+
+  localStorage.setItem('watched', JSON.stringify(arrayFilmsWatched));
+
+  console.log('arrayFilmsWatched', arrayFilmsWatched);
+  return arrayFilmsWatched;
+}
+function removeFromWatchedList(id) {
+  console.log('удаляем из watched');
+  let watchList = [];
+  localWatchListJson = load('watched');
+
+  if (localWatchListJson) {
+    watchList = localWatchListJson;
+  }
+
+  remove('watched');
+
+  let index = watchList.findIndex(film => film.id === Number(movie_id));
+
+  console.log('index', index);
+
+  watchList.splice(index, 1);
+  console.log('remove', watchList);
+  save('watched', watchList);
+}
+
+//  Ф-ції зміни тексту на кнопках
+function changeTextBtnQueue(btnEl) {
+  if (btnEl.getAttribute('data-show') === 'true') {
+    btnEl.innerText = 'Remove from queue';
+    btnEl.setAttribute('data-show', 'false');
+  } else {
+    btnEl.innerText = 'Add to queue';
+    btnEl.setAttribute('data-show', 'true');
+  }
+}
+function changeTextBtnWatch(btnEl) {
+  if (btnEl.getAttribute('data-show') === 'true') {
+    btnEl.innerText = 'Remove to watched';
+    btnEl.setAttribute('data-show', 'false');
+  } else {
+    btnEl.innerText = 'Add to watched';
+    btnEl.setAttribute('data-show', 'true');
+  }
 }
 
 // Ф-ція закриття модалки
@@ -86,6 +175,37 @@ function genresList(array) {
   }
   return genre_namess;
 }
+function setPosters(poster_path) {
+  if (poster_path === null || poster_path === 'undefined') {
+    return 'https://wipfilms.net/wp-content/data/posters/tt0338683.jpg';
+  }
+
+  return `https://www.themoviedb.org/t/p/w500${poster_path}`;
+}
+
+// Ф-ція рендеру кнопок модалки
+
+function btnChangeWatchQueue() {
+  console.log('рендер кнопок відповідно до бібліотеки');
+  // перевірка, чи є вже ця картка в сховищі
+
+  localWatchListJson = load('watched');
+
+  if (localWatchListJson) {
+    watchList = localWatchListJson;
+  }
+
+  let index = watchList.findIndex(film => film.id === Number(movie_id));
+  // перевіряєм чи знайшло фільм, тру якщо Є ФІЛЬМ
+  if (index != -1) {
+    let removeIt = 'false';
+    return removeIt;
+  }
+  removeIt = 'true';
+  return removeIt;
+
+  // перевірка, чи є вже ця картка в сховищі
+}
 
 function murckupCard({
   poster_path,
@@ -97,15 +217,8 @@ function murckupCard({
   overview,
   genre_ids,
   name,
+  id,
 }) {
-  function setPosters(poster) {
-    if (poster === null) {
-      return 'https://wipfilms.net/wp-content/data/posters/tt0338683.jpg';
-    }
-
-    return `https://www.themoviedb.org/t/p/w500${poster_path}`;
-  }
-
   return (modalEl.innerHTML = `
   <div class='modal__backdrop'></div>
 
@@ -114,7 +227,7 @@ function murckupCard({
       <img
         class='image'
         src='${setPosters(poster_path)}'
-        alt=''
+        alt='${title || name}'
         title=''
       />
     </div>
@@ -153,9 +266,9 @@ function murckupCard({
         </p>
       </div>
       <div class='film__button__wrapper'>
-        <button type='button' class='film__button btn__watch' data-id=''>Add
+        <button type='button' class='film__button btn__watch' data-id='${id}' data-show="true">Add
           to watched</button>
-        <button type='button' class='film__button btn__queue' data-id=''>Add
+        <button type='button' class='film__button btn__queue' data-id='${id}' data-show="true">Add
           to queue</button>
       </div>
       <button
@@ -169,3 +282,18 @@ function murckupCard({
   </div>
   `);
 }
+
+// стара реалізація рендерингу за допомогою FETCH(вставити в ф-цію onOpenModal)
+
+// const btnModalClos = document.querySelector('.close__button__modal');
+// btnModalClos.addEventListener('click', () => onCloseBtn());
+
+// fetchOneMovieInfo(movie_id).then(data => {
+//   console.log(data);
+//   murckupCard(data);
+
+//   // додаємо слухача на кнопку закриттяя
+//   const btnModalClos = document.querySelector('.close__button__modal');
+//   btnModalClos.addEventListener('click', () => onCloseBtn());
+// });
+// ----------------------------------------------
