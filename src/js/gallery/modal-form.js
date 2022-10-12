@@ -4,14 +4,6 @@ import { load, save, remove } from './local-st-load-remove-save';
 const galleryFilm = document.querySelector('.cards__list--home');
 const modalEl = document.querySelector('.modal');
 
-// Ф-ція фетчу одного фільму за id.
-// function fetchOneMovieInfo(movie_id) {
-//   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
-//   return fetch(url).then(response => {
-//     return response.json();
-//   });
-// }
-
 galleryFilm.addEventListener('click', onOpenModal);
 let movie_id;
 // Ф-ція відкриття модалки
@@ -128,7 +120,7 @@ function changeTextBtnQueue(btnEl) {
 }
 function changeTextBtnWatch(btnEl) {
   if (btnEl.getAttribute('data-show') === 'true') {
-    btnEl.innerText = 'Remove to watched';
+    btnEl.innerText = 'Remove from watched';
     btnEl.setAttribute('data-show', 'false');
   } else {
     btnEl.innerText = 'Add to watched';
@@ -186,9 +178,6 @@ function setPosters(poster_path) {
 // Ф-ція рендеру кнопок модалки
 
 function btnChangeWatchQueue() {
-  console.log('рендер кнопок відповідно до бібліотеки');
-  // перевірка, чи є вже ця картка в сховищі
-
   localWatchListJson = load('watched');
 
   if (localWatchListJson) {
@@ -198,13 +187,12 @@ function btnChangeWatchQueue() {
   let index = watchList.findIndex(film => film.id === Number(movie_id));
   // перевіряєм чи знайшло фільм, тру якщо Є ФІЛЬМ
   if (index != -1) {
-    let removeIt = 'false';
-    return removeIt;
+    console.log('Yes');
+    return '<button type="button" class="film__button btn__watch" data-id="${id}" data-show="false">Remove from watched</button>';
+  } else {
+    console.log('No');
+    return '<button type="button" class="film__button btn__watch" data-id="${id}" data-show="true">Add to watched</button>';
   }
-  removeIt = 'true';
-  return removeIt;
-
-  // перевірка, чи є вже ця картка в сховищі
 }
 
 function murckupCard({
@@ -265,9 +253,8 @@ function murckupCard({
         <p class='film__about__text'>${overview}
         </p>
       </div>
-      <div class='film__button__wrapper'>
-        <button type='button' class='film__button btn__watch' data-id='${id}' data-show="true">Add
-          to watched</button>
+      <div class='film__button__wrapper'>${btnChangeWatchQueue()}
+
         <button type='button' class='film__button btn__queue' data-id='${id}' data-show="true">Add
           to queue</button>
       </div>
@@ -283,6 +270,16 @@ function murckupCard({
   `);
 }
 
+// --------------------------------------------
+// Ф-ція фетчу одного фільму за id.
+// function fetchOneMovieInfo(movie_id) {
+//   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
+//   return fetch(url).then(response => {
+//     return response.json();
+//   });
+// }
+
+// ---------------------------------------------
 // стара реалізація рендерингу за допомогою FETCH(вставити в ф-цію onOpenModal)
 
 // const btnModalClos = document.querySelector('.close__button__modal');
