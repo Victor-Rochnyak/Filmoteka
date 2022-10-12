@@ -56,6 +56,18 @@ function onOpenModal(evt) {
 
   function onLibraruQueue(ev) {
     const btnEl = ev.target;
+
+    if (!load('queue')) {
+      const firstLocalSt = save('queue', []);
+    }
+
+    if (btnEl.getAttribute('data-show') === 'true') {
+      addQueueLocalStorage(oneFilmById);
+    }
+    if (btnEl.getAttribute('data-show') === 'false') {
+      removeFromQueueList(movie_id);
+    }
+
     changeTextBtnQueue(btnEl);
   }
   // --------test-btn--------------
@@ -86,7 +98,6 @@ function addWatchedLocalStorage(obj) {
 
   localStorage.setItem('watched', JSON.stringify(arrayFilmsWatched));
 
-  console.log('arrayFilmsWatched', arrayFilmsWatched);
   return arrayFilmsWatched;
 }
 function removeFromWatchedList(id) {
@@ -102,12 +113,55 @@ function removeFromWatchedList(id) {
 
   let index = watchList.findIndex(film => film.id === Number(movie_id));
 
-  console.log('index', index);
-
   watchList.splice(index, 1);
-  console.log('remove', watchList);
   save('watched', watchList);
 }
+
+// ________ Add Remove QUEUE
+
+let arrayFilmsQueue = [];
+let localQueueListJson = [];
+let queueList = [];
+
+function addQueueLocalStorage(obj) {
+  // перевірка, чи є вже ця картка в сховищі
+
+  localQueueListJson = load('queue');
+
+  if (localQueueListJson) {
+    queueList = localQueueListJson;
+  }
+
+  let index1 = queueList.findIndex(film => film.id === Number(movie_id));
+  if (index1 != -1) {
+    return;
+  }
+
+  // перевірка, чи є вже ця картка в сховищі
+
+  arrayFilmsQueue = localQueueListJson;
+
+  arrayFilmsQueue.push(obj);
+
+  localStorage.setItem('queue', JSON.stringify(arrayFilmsQueue));
+
+  return arrayFilmsQueue;
+}
+function removeFromQueueList(id) {
+  localQueueListJson = load('queue');
+
+  if (localQueueListJson) {
+    queueList = localQueueListJson;
+  }
+
+  remove('queue');
+
+  let index = queueList.findIndex(film => film.id === Number(movie_id));
+
+  queueList.splice(index, 1);
+  save('queue', queueList);
+}
+// ________ Add Remove QUEUE
 
 //  Ф-ції зміни тексту на кнопках
 function changeTextBtnQueue(btnEl) {
@@ -178,7 +232,7 @@ function setPosters(poster_path) {
 
 // Ф-ція рендеру кнопок модалки
 
-function btnChangeWatchQueue() {
+function btnChangeWatch() {
   localWatchListJson = load('watched');
 
   if (localWatchListJson) {
@@ -188,11 +242,21 @@ function btnChangeWatchQueue() {
   let index = watchList.findIndex(film => film.id === Number(movie_id));
   // перевіряєм чи знайшло фільм, тру якщо Є ФІЛЬМ
   if (index != -1) {
-    console.log('Yes');
     return '<button type="button" class="film__button btn__watch" data-id="${id}" data-show="false">Remove from watched</button>';
   } else {
-    console.log('No');
     return '<button type="button" class="film__button btn__watch" data-id="${id}" data-show="true">Add to watched</button>';
+  }
+}
+function btnChangeQueue() {
+  localQueueListJson = load('queue');
+  if (localQueueListJson) {
+    queueList = localQueueListJson;
+  }
+  let index = queueList.findIndex(film => film.id === Number(movie_id));
+  if (index != -1) {
+    return '<button type="button" class="film__button btn__queue" data-id="${id}" data-show="false">Remove from queue</button>';
+  } else {
+    return '<button type="button" class="film__button btn__queue" data-id="${id}" data-show="true">Add to queue</button>';
   }
 }
 
@@ -254,10 +318,9 @@ function murckupCard({
         <p class='film__about__text'>${overview}
         </p>
       </div>
-      <div class='film__button__wrapper'>${btnChangeWatchQueue()}
+      <div class='film__button__wrapper'>${btnChangeWatch()}
 
-        <button type='button' class='film__button btn__queue' data-id='${id}' data-show="true">Add
-          to queue</button>
+        ${btnChangeQueue()}
       </div>
       <button
         type='button'
