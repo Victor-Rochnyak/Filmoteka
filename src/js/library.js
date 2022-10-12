@@ -8,39 +8,31 @@ const btnQueue = document.querySelector('.btnQueue');
 btnWatched.addEventListener('click', showListWatched);
 btnQueue.addEventListener('click', showListQueue);
 
-console.log('В библиотеке');
+export function showListWatched(e) {
+  // e.preventDefault();
 
-function showListWatched(e) {
-  e.preventDefault();
   libGalleryRef.innerHTML = '';
   btnWatched.classList.add('activ');
   btnQueue.classList.remove('activ');
-  console.log(btnWatched);
-  console.log(btnQueue);
 
   const listWatched = load('watched');
-  console.log(listWatched);
 
   if (!listWatched) {
-    console.log('Вывести заглушку');
   }
 
   Render(listWatched);
 }
 
-function showListQueue(e) {
+export function showListQueue(e) {
   e.preventDefault();
+
   libGalleryRef.innerHTML = '';
   btnWatched.classList.remove('activ');
   btnQueue.classList.add('activ');
-  console.log(btnWatched);
-  console.log(btnQueue);
 
   const listQueue = load('queue');
-  console.log(listQueue);
 
   if (!listQueue) {
-    console.log('Вывести заглушку');
   }
   Render(listQueue);
 }
