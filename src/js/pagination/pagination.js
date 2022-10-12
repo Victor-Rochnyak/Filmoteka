@@ -53,7 +53,7 @@ export function createPagination(total_results) {
       .then(({ results }) => {
         makingMarkup(results);
         // for (const result of results) {
-        //   localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
+          localStorage.setItem(`film`, JSON.stringify(results));
         // }
       })
       .catch(error => console.log(error));
