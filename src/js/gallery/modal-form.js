@@ -56,12 +56,25 @@ function onOpenModal(evt) {
 
   function onLibraruQueue(ev) {
     const btnEl = ev.target;
+
+    if (!load('queue')) {
+      const firstLocalSt = save('queue', []);
+    }
+
+    if (btnEl.getAttribute('data-show') === 'true') {
+      addQueueLocalStorage(oneFilmById);
+    }
+    if (btnEl.getAttribute('data-show') === 'false') {
+      removeFromQueueList(movie_id);
+    }
+
     changeTextBtnQueue(btnEl);
   }
   // --------test-btn--------------
 }
 let arrayFilmsWatched = [];
 let localWatchListJson = [];
+let watchList = [];
 
 function addWatchedLocalStorage(obj) {
   // перевірка, чи є вже ця картка в сховищі
@@ -90,7 +103,7 @@ function addWatchedLocalStorage(obj) {
 }
 function removeFromWatchedList(id) {
   console.log('удаляем из watched');
-  let watchList = [];
+
   localWatchListJson = load('watched');
 
   if (localWatchListJson) {
@@ -112,6 +125,7 @@ function removeFromWatchedList(id) {
 
 let arrayFilmsQueue = [];
 let localQueueListJson = [];
+let queueList = [];
 
 function addQueueLocalStorage(obj) {
   // перевірка, чи є вже ця картка в сховищі
@@ -140,7 +154,7 @@ function addQueueLocalStorage(obj) {
 }
 function removeFromQueueList(id) {
   console.log('удаляем из queue');
-  let queueList = [];
+
   localQueueListJson = load('queue');
 
   if (localQueueListJson) {
