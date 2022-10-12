@@ -13,7 +13,7 @@ const moviesApiService = new MoviesApiService();
 moviesApiService
   .fetchGenres()
   .then(({ genres }) => {
-    localStorage.setItem("genre", JSON.stringify(genres));
+    localStorage.setItem('genre', JSON.stringify(genres));
 
     // for (const { id, name } of genres) {
     //   localStorage.setItem(`genre_${id}`, name);
@@ -27,7 +27,7 @@ moviesApiService
   .then(({ results, total_results }) => {
     // renderSlider(results);
     makingMarkup(results);
-    
+
     createPagination(total_results);
     localStorage.setItem('film', JSON.stringify(results));
     // for (const result of results) {
@@ -52,8 +52,8 @@ function genresList(array) {
     if (foundGenres === 2) {
       genre_names += 'Others';
       break;
-    }  
-      
+    }
+
     foundGenres += 1;
     genre_names += genre_name.name;
   }
@@ -63,6 +63,14 @@ function genresList(array) {
   return genre_names;
 }
 // РОЗМІТКА
+function setPosters(poster_path) {
+  if (poster_path === null || poster_path === undefined) {
+    return 'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
+  }
+
+  return `https://www.themoviedb.org/t/p/w500${poster_path}`;
+}
+
 export default function makingMarkup(results) {
   const markup = results
     .map(
@@ -77,7 +85,7 @@ export default function makingMarkup(results) {
       }) => {
         return `<div class="movie-card">
                 <img width="280" height="402" class="movie-card__img"
-                src="${URL_POSTER}/${poster_path}" alt="" data-id="${id}"
+                src="${setPosters(poster_path)}" alt="" data-id="${id}"
                 loading="lazy"/>
 
                 <div class="info">
@@ -95,18 +103,17 @@ export default function makingMarkup(results) {
     )
     .join('');
   return insertFilmsMarkup(markup);
-  
 
-// Функція для вставки розмітки в контейнер
-function insertFilmsMarkup(filmsMarkup) {
-  homeCardsContainer.insertAdjacentHTML('beforeend', filmsMarkup);
-}
+  // Функція для вставки розмітки в контейнер
+  function insertFilmsMarkup(filmsMarkup) {
+    homeCardsContainer.insertAdjacentHTML('beforeend', filmsMarkup);
+  }
 
-function renderSlider() {
-  const markup = moviesApiService.sliderFilms
-    .map(
-      ({ id, poster_path, title }) =>
-        `<div class="swiper-slider__wrapper swiper-slide">
+  function renderSlider() {
+    const markup = moviesApiService.sliderFilms
+      .map(
+        ({ id, poster_path, title }) =>
+          `<div class="swiper-slider__wrapper swiper-slide">
               <img class="slide-img"
               src="${URL_POSTER}/${poster_path}" 
               alt="${title}" "id=${id}" 
@@ -114,91 +121,89 @@ function renderSlider() {
               />
 
           </div>`
-    )
-    .join('');
+      )
+      .join('');
 
-  sliderContainerRef.insertAdjacentHTML('beforeend', markup);
+    sliderContainerRef.insertAdjacentHTML('beforeend', markup);
 
+    // function renderSlider() {
+    //   const markup = moviesApiService.sliderFilms
+    //     .map(
+    //       ({ id, poster_path, title }) =>
+    //         `<div class="swiper-slider__wrapper swiper-slide">
+    //               <img class="slide-img"
+    //               src="${URL_POSTER}/${poster_path}"
+    //               alt="${title}" "id=${id}"
+    //               width=""
+    //               />
 
-// function renderSlider() {
-//   const markup = moviesApiService.sliderFilms
-//     .map(
-//       ({ id, poster_path, title }) =>
-//         `<div class="swiper-slider__wrapper swiper-slide">
-//               <img class="slide-img"
-//               src="${URL_POSTER}/${poster_path}" 
-//               alt="${title}" "id=${id}" 
-//               width=""
-//               />
+    //           </div>`
+    //     )
+    //     .join('');
 
-//           </div>`
-//     )
-//     .join('');
-    
-//     sliderContainerRef.insertAdjacentHTML('beforeend', markup);
+    //     sliderContainerRef.insertAdjacentHTML('beforeend', markup);
 
+    //   const swiper = new Swiper('.swiper', {
+    //     disableOnInteraction: true,
+    //     slidesPerView: 7,
+    //     slidesPerGroup: 1,
+    //     spaceBetween: 65,
+    //     speed: 2500,
+    //     // centralSlides: true,
+    //     loop: true,
 
-//   const swiper = new Swiper('.swiper', {
-//     disableOnInteraction: true,
-//     slidesPerView: 7,
-//     slidesPerGroup: 1,
-//     spaceBetween: 65,
-//     speed: 2500,
-//     // centralSlides: true,
-//     loop: true,
+    //     grabCursor: true,
+    //     effect: 'coverflow',
+    //     coverflowEffect: {
+    //       //modifier:5, //для mobile
+    //       depth: 70,
+    //       rotate: 8,
+    //       stretch: 50,
+    //       slideShadows: false,
+    //     },
+    //     navigation: {
+    //       nextEl: '.swiper-button-next',
+    //       prevEl: '.swiper-button-prev',
+    //     },
+    //     autoplay: {
+    //       delay: 1,
+    //       disableOnInteraction: false,
+    //       pauseOnMouseEnter: true,
+    //     },
+    //     freeMode: true,
 
-//     grabCursor: true,
-//     effect: 'coverflow',
-//     coverflowEffect: {
-//       //modifier:5, //для mobile
-//       depth: 70,
-//       rotate: 8,
-//       stretch: 50,
-//       slideShadows: false,
-//     },
-//     navigation: {
-//       nextEl: '.swiper-button-next',
-//       prevEl: '.swiper-button-prev',
-//     },
-//     autoplay: {
-//       delay: 1,
-//       disableOnInteraction: false,
-//       pauseOnMouseEnter: true,
-//     },
-//     freeMode: true,
-
-//     breakpoints: {
-//       768: {
-//         loop: true,
-//         slidesPerView: 3,
-//         slidesPerGroup: 1,
-//         spaceBetween: 60,
-//         disableOnInteraction: true,
-//         navigation: {
-//           enabled: true,
-//         },
-//       },
-//       1200: {
-//         loop: true,
-//         slidesPerView: 5,
-//         slidesPerGroup: 1,
-//         spaceBetween: 65,
-//         disableOnInteraction: true,
-//         navigation: {
-//           enabled: true,
-//         },
-//       },
-//       1500: {
-//         loop: true,
-//         slidesPerView: 5,
-//         slidesPerGroup: 1,
-//         spaceBetween: 58,
-//         disableOnInteraction: true,
-//         navigation: {
-//           enabled: true,
-//         },
-//       },
-//     },
-//   });
-}
+    //     breakpoints: {
+    //       768: {
+    //         loop: true,
+    //         slidesPerView: 3,
+    //         slidesPerGroup: 1,
+    //         spaceBetween: 60,
+    //         disableOnInteraction: true,
+    //         navigation: {
+    //           enabled: true,
+    //         },
+    //       },
+    //       1200: {
+    //         loop: true,
+    //         slidesPerView: 5,
+    //         slidesPerGroup: 1,
+    //         spaceBetween: 65,
+    //         disableOnInteraction: true,
+    //         navigation: {
+    //           enabled: true,
+    //         },
+    //       },
+    //       1500: {
+    //         loop: true,
+    //         slidesPerView: 5,
+    //         slidesPerGroup: 1,
+    //         spaceBetween: 58,
+    //         disableOnInteraction: true,
+    //         navigation: {
+    //           enabled: true,
+    //         },
+    //       },
+    //     },
+    //   });
+  }
 }
