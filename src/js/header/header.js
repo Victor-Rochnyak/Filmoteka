@@ -14,6 +14,8 @@ const searchFilms = input.value.trim();
 const movieApiServise = new MoviesApiService();
 movieApiServise.query = searchFilms;
 
+let totalResults;
+
 // MovieSearch('game')
 //Функція вітягує фільми
 async function MovieSearch(searchFilm) {
@@ -21,8 +23,13 @@ async function MovieSearch(searchFilm) {
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchFilm}`
   );
   const respData = await resp.json();
+  console.log(respData.total_results)
+  totalResults = respData.total_results;
   return respData.results;
 }
+
+
+
 // при клікі на кнопку ввідображає фільми з інпуту
 btn.addEventListener('click', searchMovies);
 async function searchMovies(event) {
@@ -34,8 +41,9 @@ async function searchMovies(event) {
   clearGallaryContainer();
   // renderMarkupSearchFilms()
   makingMarkup(data);
-  createPagination(searchFilms);
+  
   input.value = '';
+  createPagination(totalResults);
 }
 // малює контейнер для фільміф з інпуту
 function clearGallaryContainer() {
