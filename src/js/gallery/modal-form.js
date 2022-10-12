@@ -10,7 +10,9 @@ let movie_id;
 function onOpenModal(evt) {
   evt.preventDefault();
   evt.stopPropagation();
+
   closeEsc();
+  // onBackdropClick(evt);
   modalEl.classList.add('is-open');
 
   // const movie_id = evt.target.dataset.id;
@@ -201,6 +203,12 @@ function closeEsc() {
     }
   }
 }
+// Close modal backdrop
+// function onBackdropClick(evt) {
+//   if (evt.currentTarget === evt.target) {
+//     onCloseBtn();
+//   }
+// }
 
 // render film card
 function genresList(array) {
@@ -223,8 +231,8 @@ function genresList(array) {
   return genre_namess;
 }
 function setPosters(poster_path) {
-  if (poster_path === null || poster_path === 'undefined') {
-    return 'https://wipfilms.net/wp-content/data/posters/tt0338683.jpg';
+  if (poster_path === null || poster_path === undefined) {
+    return 'https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg';
   }
 
   return `https://www.themoviedb.org/t/p/w500${poster_path}`;
@@ -308,7 +316,7 @@ function murckupCard({
           </li>
           <li class='film__item'>
             <p class='film__details'>Genre</p>
-            <p class='film__about__text'>${genresList(genre_ids)}
+            <p class='film__about__text'>${genresList(genre_ids) || 'N/A'}
             </p>
           </li>
         </ul>
