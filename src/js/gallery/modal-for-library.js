@@ -1,4 +1,6 @@
 import { load, save, remove } from './local-st-load-remove-save';
+import { showListWatched } from '../library';
+import { showListQueue } from '../library';
 
 const galleryFilm = document.querySelector('.cards__list');
 const modalEl = document.querySelector('.modal');
@@ -15,19 +17,16 @@ function onOpenModal(evt) {
   // const movie_id = evt.target.dataset.id;
   movie_id = evt.target.dataset.id;
 
-  // ____________local st----закидаєм картку фільму в папка film
+  // ____________local st----закидаєм картку фільму в LS
 
   const watchListJson = load('watched');
   const queueListJson = load('queue');
 
   const filmForLibrary = watchListJson.concat(queueListJson);
 
-  // const filmsLocalSt = localStorage.getItem(`film`);
-  // const arrayFilmLocalSt = JSON.parse(filmsLocalSt);
   const oneFilmById = filmForLibrary.find(film => film.id === Number(movie_id));
 
   // ____________local st----
-  // const firstLocalSt = save('watched', []);
 
   murckupCard(oneFilmById);
   closeBtn();
@@ -55,6 +54,7 @@ function onOpenModal(evt) {
     }
 
     changeTextBtnWatch(btnEl);
+    showListWatched(ev);
   }
 
   function onLibraruQueue(ev) {
@@ -72,6 +72,7 @@ function onOpenModal(evt) {
     }
 
     changeTextBtnQueue(btnEl);
+    showListQueue(ev);
   }
   // --------test-btn--------------
 }
@@ -104,8 +105,6 @@ function addWatchedLocalStorage(obj) {
   return arrayFilmsWatched;
 }
 function removeFromWatchedList(id) {
-  console.log('удаляем из watched');
-
   localWatchListJson = load('watched');
 
   if (localWatchListJson) {
