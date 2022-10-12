@@ -77,6 +77,7 @@ export default function makingMarkup(results) {
       ({
         title,
         name,
+        vote_average,
         poster_path,
         genre_ids,
         id,
@@ -90,13 +91,13 @@ export default function makingMarkup(results) {
 
                 <div class="info">
                     <p class="info-item">
-                        <b>${title || name}</b>
+                        <b>${title || name} </b>
                     </p>
                     <p class="info-item">
                         <b>${genresList(genre_ids)} | ${(
           release_date || first_air_date
         ).slice(0, 4)}</b> 
-                 
+                 <span class='film__rating--orange'>${vote_average}</span>
                 </div>
             </div>`;
       }
