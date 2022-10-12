@@ -98,7 +98,6 @@ function addWatchedLocalStorage(obj) {
 
   localStorage.setItem('watched', JSON.stringify(arrayFilmsWatched));
 
-  console.log('arrayFilmsWatched', arrayFilmsWatched);
   return arrayFilmsWatched;
 }
 function removeFromWatchedList(id) {
@@ -114,10 +113,7 @@ function removeFromWatchedList(id) {
 
   let index = watchList.findIndex(film => film.id === Number(movie_id));
 
-  console.log('index', index);
-
   watchList.splice(index, 1);
-  console.log('remove', watchList);
   save('watched', watchList);
 }
 
@@ -149,12 +145,9 @@ function addQueueLocalStorage(obj) {
 
   localStorage.setItem('queue', JSON.stringify(arrayFilmsQueue));
 
-  console.log('arrayFilmsQueue', arrayFilmsQueue);
   return arrayFilmsQueue;
 }
 function removeFromQueueList(id) {
-  console.log('удаляем из queue');
-
   localQueueListJson = load('queue');
 
   if (localQueueListJson) {
@@ -165,10 +158,7 @@ function removeFromQueueList(id) {
 
   let index = queueList.findIndex(film => film.id === Number(movie_id));
 
-  console.log('index', index);
-
   queueList.splice(index, 1);
-  console.log('remove', queueList);
   save('queue', queueList);
 }
 // ________ Add Remove QUEUE
