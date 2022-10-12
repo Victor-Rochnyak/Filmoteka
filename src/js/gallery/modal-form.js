@@ -62,6 +62,7 @@ function onOpenModal(evt) {
 }
 let arrayFilmsWatched = [];
 let localWatchListJson = [];
+let watchList = [];
 
 function addWatchedLocalStorage(obj) {
   // перевірка, чи є вже ця картка в сховищі
@@ -90,7 +91,7 @@ function addWatchedLocalStorage(obj) {
 }
 function removeFromWatchedList(id) {
   console.log('удаляем из watched');
-  let watchList = [];
+
   localWatchListJson = load('watched');
 
   if (localWatchListJson) {
