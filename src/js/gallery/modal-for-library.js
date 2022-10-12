@@ -10,6 +10,14 @@ let movie_id;
 // Ф-ція відкриття модалки
 function onOpenModal(evt) {
   evt.preventDefault();
+  if (
+    evt.target.nodeName !== 'IMG' &&
+    evt.target.nodeName !== 'P' &&
+    evt.target.nodeName !== 'A'
+  ) {
+    return;
+  }
+
   evt.stopPropagation();
   closeEsc();
   modalEl.classList.add('is-open');
