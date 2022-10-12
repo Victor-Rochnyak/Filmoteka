@@ -86,7 +86,7 @@ export default class MoviesApiService {
   async fetchTrendingMovies() {
     try {
       startLoader;
-      const url = `${URL_TRENDING_FILMS}trending/all/day?&api_key=${API_KEY}&page=${this._page}`;
+      const url = `${URL_TRENDING_FILMS}trending/movie/day?&api_key=${API_KEY}&page=${this._page}`;
       const response = await axios.get(url);
       this.sliderFilms = response.data.results;
       removeLoader;
