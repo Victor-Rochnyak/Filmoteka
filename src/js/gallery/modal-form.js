@@ -97,6 +97,7 @@ function murckupCard({
   overview,
   genre_ids,
   name,
+  
 }) {
   function setPosters(poster) {
     if (poster === null) {
