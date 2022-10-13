@@ -84,24 +84,24 @@ export default function makingMarkup(results) {
         release_date,
         first_air_date,
       }) => {
-        return `<div class="movie-card">
+        return `<li class="movie-card"><div>
                 <img width="280" height="402" class="movie-card__img"
                 src="${setPosters(poster_path)}" alt="" data-id="${id}"
-                loading="lazy"/>
+                loading="lazy"/></div>
 
                 <div class="info">
                     <p class="info-item">
-                        <b>${title || name} </b>
+                        ${title || name} 
                     </p>
                     <p class="info-item">
-                        <b>${genresList(genre_ids)} | ${(
+                        ${genresList(genre_ids)} | ${(
           release_date || first_air_date
-        ).slice(0, 4)}</b> 
+        ).slice(0, 4)}
                  <span class='film__rating--orange'>${vote_average.toFixed(
                    1
-                 )}</span>
+                 )}</span></p>
                 </div>
-            </div>`;
+            </li>`;
       }
     )
     .join('');
