@@ -36,15 +36,7 @@ function onOpenModal(evt) {
 
   murckupCard(oneFilmById);
   closeBtn();
-  // backdropClose();
-  const backdropEl = document.querySelector('.modal__backdrop');
-  backdropEl.addEventListener('click', onBackdropClick);
-  function onBackdropClick(evt) {
-    if (evt.currentTarget === evt.target) {
-      onCloseBtn();
-      backdropEl.removeEventListener('click', onBackdropClick);
-    }
-  }
+  backdropClose();
 
   // --------test-btn--------------
   const btnWatchEl = document.querySelector('.btn__watch');
@@ -220,11 +212,12 @@ function closeEsc() {
 }
 // Close modal backdrop
 function backdropClose() {
+  const backdropEl = document.querySelector('.modal__backdrop');
   backdropEl.addEventListener('click', onBackdropClick);
   function onBackdropClick(evt) {
     if (evt.currentTarget === evt.target) {
       onCloseBtn();
-      // backdropEl.removeEventListener('click', onBackdropClick);
+      backdropEl.removeEventListener('click', onBackdropClick);
     }
   }
 }
