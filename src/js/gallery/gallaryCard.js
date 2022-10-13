@@ -97,7 +97,9 @@ export default function makingMarkup(results) {
                         <b>${genresList(genre_ids)} | ${(
           release_date || first_air_date
         ).slice(0, 4)}</b> 
-                 <span class='film__rating--orange'>${vote_average}</span>
+                 <span class='film__rating--orange'>${vote_average.toFixed(
+                   1
+                 )}</span>
                 </div>
             </div>`;
       }
