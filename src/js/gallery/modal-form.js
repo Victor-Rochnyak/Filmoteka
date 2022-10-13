@@ -20,10 +20,9 @@ function onOpenModal(evt) {
   evt.stopPropagation();
 
   closeEsc();
-  // onBackdropClick(evt);
+
   modalEl.classList.add('is-open');
 
-  // const movie_id = evt.target.dataset.id;
   movie_id = evt.target.dataset.id;
 
   // ____________local st----закидаєм картку фільму в папка film
@@ -34,10 +33,10 @@ function onOpenModal(evt) {
   );
 
   // ____________local st----
-  // const firstLocalSt = save('watched', []);
 
   murckupCard(oneFilmById);
   closeBtn();
+  backdropClose();
 
   // --------test-btn--------------
   const btnWatchEl = document.querySelector('.btn__watch');
@@ -212,11 +211,16 @@ function closeEsc() {
   }
 }
 // Close modal backdrop
-// function onBackdropClick(evt) {
-//   if (evt.currentTarget === evt.target) {
-//     onCloseBtn();
-//   }
-// }
+function backdropClose() {
+  const backdropEl = document.querySelector('.modal__backdrop');
+  backdropEl.addEventListener('click', onBackdropClick);
+  function onBackdropClick(evt) {
+    if (evt.currentTarget === evt.target) {
+      onCloseBtn();
+      backdropEl.removeEventListener('click', onBackdropClick);
+    }
+  }
+}
 
 // render film card
 function genresList(array) {
