@@ -287,10 +287,15 @@ function murckupCard({
   genre_ids,
   name,
   id,
+  backdrop_path,
 }) {
   return (modalEl.innerHTML = `
-  <div class='modal__backdrop'></div>
-
+  <div class='modal__backdrop'
+              style="background-image:linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
+              url('https://image.tmdb.org/t/p/original/${backdrop_path}');
+              background-size:cover; 
+              background-position: center;">
+  </div>
   <div class='modal__container'>
     <div class='film__image'>
       <img
@@ -298,6 +303,7 @@ function murckupCard({
         src='${setPosters(poster_path)}'
         alt='${title || name}'
         title=''
+        width='336'
       />
     </div>
 
