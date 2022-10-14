@@ -62,3 +62,5 @@ function clearGallaryContainer() {
 //   const respData = await resp.json()
 //   return respData
 // }
+
+
