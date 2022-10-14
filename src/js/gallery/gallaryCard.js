@@ -37,21 +37,19 @@ moviesApiService
   .catch(error => console.log(error));
 
 
-  moviesApiService
-  .fetchSearchingMovies()
-  .then(({ results, total_results }) => {
-    
-    makingMarkup(results);
+// moviesApiService
+// .fetchSearchingMovies()
+// .then(({ results, total_results }) => {
 
-    createPagination(total_results);
-    localStorage.setItem('film', JSON.stringify(results));
-    // for (const result of results) {
-    //   localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
-    // }
-  })
-  .catch(error => console.log(error));
+//   makingMarkup(results);
 
-
+//   createPagination(total_results);
+//   localStorage.setItem('film', JSON.stringify(results));
+//   // for (const result of results) {
+//   //   localStorage.setItem(`film_${result.id}`, JSON.stringify(result));
+//   // }
+// })
+// .catch(error => console.log(error));
 
 function genresList(array) {
   let genre_names = '';

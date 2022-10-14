@@ -73,19 +73,31 @@ export default class MoviesApiService {
     this.sliderFilms = [];
   }
 
- async fetchSearchingMovies() {
-  // https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${this._page}&include_adult=false&query=${this.searchQuery}
-   try{
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&${this._page}`;
+  //  async fetchSearchingMovies() {
+  //   // https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${this._page}&include_adult=false&query=${this.searchQuery}
+  //    try{
+  //     const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&=page${this._page}`;
+  //     const response = await axios.get(url);
+
+  //     this.searchQuery = response.data.results
+  //     return this.searchQuery
+  //    } catch (error) {
+  //     Notify.failure('Oops, an error occurred');
+  //   }
+  // }
+  // async movieSearch() {
+  //   const resp = await fetch(
+  //     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&=page${this._page}`
+  //   );
+  //   const respData = await resp.json();
+  //   return  respData.result;
+  // }
+
+  async movieSearch() {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&=page${this._page}`;
     const response = await axios.get(url);
-
-    this.searchQuery = response.data.results
-    return this.searchQuery
-   } catch (error) {
-    Notify.failure('Oops, an error occurred');
+    return response.data
   }
-}
-
   //slider and galerry
   async fetchTrendingMovies() {
     try {
