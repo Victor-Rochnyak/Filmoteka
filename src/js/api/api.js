@@ -94,7 +94,7 @@ export default class MoviesApiService {
   // }
 
   async movieSearch() {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&=page${this._page}`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&page=${this._page}`;
     const response = await axios.get(url);
     return response.data
   }
