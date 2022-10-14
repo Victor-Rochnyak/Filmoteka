@@ -17,7 +17,7 @@ async function searchMovies(evt) {
   evt.preventDefault();
 
   try {
-    searchFilms = input.value.trim();
+    const searchFilms = input.value.trim();
     movieApiServise.query = searchFilms;
     if (movieApiServise.query === '') return;
     await movieApiServise.movieSearch().then(({ results, total_results }) => {
