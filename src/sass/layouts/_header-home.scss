@@ -178,36 +178,33 @@
   margin-right: auto;
 }
 
-.filter-icon {
-  background-color: rgba(87, 61, 61, 0.315);
-  width: 110px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  cursor: pointer;
-  text-transform: uppercase;
-}
+// .filter-icon {
+//   background-color: rgba(87, 61, 61, 0.315);
+
+//   height: 40px;
+//   border-radius: 10px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   color: #fff;
+//   cursor: pointer;
+//   text-transform: uppercase;
+// }
 
 .settings {
-  background-color: rgba(87, 61, 61, 0.315);
-  width: 150px;
+  background-color:inherit;
   height: 40px;
-  border-radius: 10px;
+  border-style: none;
   align-items: center;
   justify-content: center;
   margin-left: auto;
   font-family: inherit;
   line-height: 1.15;
   margin: 0;
-  color: #fff;
-  text-transform: uppercase;
   cursor: pointer;
 }
 
 .filter__icon {
   fill: #ff001b;
-  margin-right: 10px;
+  margin-right: 20px;
 }

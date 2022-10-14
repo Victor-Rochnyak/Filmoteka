@@ -105,8 +105,8 @@ export default function makingMarkup(results) {
                 loading="lazy"/></div>
 
                 <div class="info">
-                    <p class="info-item">
-                        ${title || name} 
+                    <p class="info-item ">
+                        ${title || name } 
                     </p>
                     <p class="info-item">
                         ${genresList(genre_ids)} | ${(

@@ -1,15 +1,18 @@
 const spanEl = document.querySelectorAll('.color');
 const buttonRef = document.querySelector('.change-color');
-const buttonText = document.querySelector('.settings__text');
+const icon = document.querySelector('.icon');
+
 
 buttonRef.addEventListener('click', () => {
   spanEl.forEach(element => {
-    if (element.style.cssText !== 'background-color: black;') {
-      element.setAttribute('style', 'background-color: ' + 'black');
-      buttonText.textContent = 'LIGHT SIDE';
+    if (element.style.cssText !== 'background-color: grey;') {
+      element.setAttribute('style', 'background-color: ' + 'grey');
+      icon.setAttribute('style', 'fill: ' + 'grey');
     } else {
       element.setAttribute('style', 'background-color: ' + '#fff');
-      buttonText.textContent = 'DARK SIDE';
+      icon.setAttribute('style', 'fill: ' + 'red');
+    
     }
   });
 });
+ 
