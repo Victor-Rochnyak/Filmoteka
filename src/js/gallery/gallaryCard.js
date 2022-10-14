@@ -99,6 +99,7 @@ export default function makingMarkup(results) {
         release_date,
         first_air_date,
       }) => {
+        let data = (release_date || first_air_date || 'n/a ').slice(0, 4);
         return `<li class="movie-card">
         <div class="films__img">
                 <img src="${setPosters(poster_path)}" alt="" data-id="${id}"
@@ -109,9 +110,7 @@ export default function makingMarkup(results) {
                         ${title || name } 
                     </p>
                     <p class="info-item">
-                        ${genresList(genre_ids)} | ${(
-          release_date || first_air_date
-        )}
+                        ${genresList(genre_ids)} | ${data}
                  <span class='film__rating'>${vote_average.toFixed(
                    1
                  )}</span></p>
