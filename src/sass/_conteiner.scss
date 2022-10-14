@@ -26,4 +26,6 @@
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
   }
- 
+ main {
+   min-height: calc(100vh - 297px);
+ }
