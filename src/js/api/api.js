@@ -73,14 +73,18 @@ export default class MoviesApiService {
     this.sliderFilms = [];
   }
 
-  // // Феч фільмів по трендам
-  // fetchTrendingMovies() {
-  // const url = `${URL_TRENDING_FILMS}trending/all/day?&api_key=${API_KEY}&page=${this._page}`;
+ async fetchSearchingMovies() {
+  // https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${this._page}&include_adult=false&query=${this.searchQuery}
+   try{
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&${this._page}`;
+    const response = await axios.get(url);
 
-  // return fetch(url).then(response => {
-  //   return response.json();
-  // });
-  // }
+    this.searchQuery = response.data.results
+    return this.searchQuery
+   } catch (error) {
+    Notify.failure('Oops, an error occurred');
+  }
+}
 
   //slider and galerry
   async fetchTrendingMovies() {
@@ -124,13 +128,3 @@ export default class MoviesApiService {
     this._page = newPage;
   }
 }
-
-
-// FETCHING FILMS USING FORM
-// fetchSearchingMovies() {
-//   const url = `${BASE_TRENDING_MOVIES_URL}search/movie?api_key=${API_KEY}&page=${this._page}&query=${this.searchQuery}`;
-
-//   return fetch(url).then(response => {
-//     return response.json();
-//   });
-// }

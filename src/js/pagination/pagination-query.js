@@ -5,7 +5,7 @@ import makingMarkup from '../gallery/gallaryCard';
 const homeCardsContainer = document.querySelector('.cards__list--home');
 const moviesApiService = new MoviesApiService();
 
-export function createPagination() {
+export function createPagination(total_results) {
   const container = document.getElementById('pagination');
   const options = {
     totalItems: total_results,
@@ -50,7 +50,7 @@ export function createPagination() {
     moviesApiService.page = event.page;
     // moviesApiService.query = searchQuery;
     moviesApiService
-      .fetchTrendingMovies()
+      .fetchSearchingMovies()
       .then(({ results }) => {
         makingMarkup(results);
         // for (const result of results) {
@@ -61,3 +61,18 @@ export function createPagination() {
   });
 }
 
+// const searchMoviesPagination = event => {
+//   homeCardsContainer.innerHTML = '';
+//   moviesApiService.page = event.page;
+//   // moviesApiService.query = searchQuery;
+//   moviesApiService
+//     .fetchSearchingMovies()
+//     .then(({ results }) => {
+//       makingMarkup(results);
+//       // for (const result of results) {
+//       // localStorage.setItem(`film`, JSON.stringify(results));
+//       // }
+//     })
+//     .catch(error => console.log(error));
+// };
+// }
