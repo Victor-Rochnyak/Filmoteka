@@ -192,7 +192,7 @@
 // }
 
 .settings {
-  background-color:inherit;
+  background-color: inherit;
   height: 40px;
   border-style: none;
   align-items: center;
@@ -207,4 +207,15 @@
 .filter__icon {
   fill: #ff001b;
   margin-right: 20px;
+}
+
+.warning-notification {
+  position: absolute;
+  top: 40px;
+  width: 280px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.17;
+  font-weight: 400;
+  color: red;
 }
