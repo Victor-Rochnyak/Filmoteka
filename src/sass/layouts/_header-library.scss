@@ -41,7 +41,10 @@
   }
 }
 .navigation__item:not(:last-child) {
-  margin-right: 40px;
+  margin-right: 20px;
+  @media screen and (min-width: 768px) {
+    margin-right: 40px;
+  }
 }
 
 .header__library .logo {

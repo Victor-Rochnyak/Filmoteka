@@ -50,7 +50,7 @@ function Render(obj) {
         first_air_date,
       }) => {
         return `<div class="movie-card">
-                <img width="280" height="402" class="movie-card__img"
+                <img width="100%" height="402" class="movie-card__img"
                 src="${setPosters(poster_path)}" alt="" data-id="${id}"
                 loading="lazy"/>
 
@@ -60,8 +60,8 @@ function Render(obj) {
                     </p>
                     <p class="info-item">
                         <b>${genresList(genre_ids)} | ${(
-          release_date || first_air_date
-        ).slice(0, 4)}</b>                  
+            release_date || first_air_date
+          ).slice(0, 4)}</b>                  
                 </div>
             </div>`;
       }
