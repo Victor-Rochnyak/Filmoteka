@@ -319,7 +319,7 @@ function murckupCard({
           <li class='film__item'>
             <p class='film__details'>Vote / Votes</p>
             <p class='film__info--uper'>
-            <span class='film__rating--orange'>${vote_average}</span>
+            <span class='film__rating--orange'>${vote_average.toFixed(1)}</span>
             <span class='film__rating--divider'> / </span>
             <span>${vote_count}</span>
           </p>
