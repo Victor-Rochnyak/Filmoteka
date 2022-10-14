@@ -1,4 +1,5 @@
-import makingMarkup from '../gallery/gallaryCard';
+
+import mkingMarkup from '../gallery/gallaryCard';
 import API_KEY from '../api/apiKey';
 import { createPagination } from '../pagination/pagination-query';
 import MoviesApiService from '../api/api';
@@ -58,9 +59,7 @@ function clearGallaryContainer() {
 
 //!---------------------
 // async function get_movie_by_id (id) {
-//   const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+//   const resp = await fetch(https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY})
 //   const respData = await resp.json()
 //   return respData
 // }
-
-
