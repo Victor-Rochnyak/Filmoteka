@@ -1,4 +1,3 @@
-
 import makingMarkup from '../gallery/gallaryCard';
 import API_KEY from '../api/apiKey';
 import { createPagination } from '../pagination/pagination-query';
@@ -10,8 +9,12 @@ const input = document.querySelector('.search__input');
 const btn = document.querySelector('.search__button');
 const searchForm = document.querySelector('.search');
 
-const movieApiServise = new MoviesApiService();
+// Для виводу повідомлення про помилку+++++++++++
+const error = document.querySelector('.warning-notification');
+const cardsContainer = document.querySelector('.cards__list');
+// ++++++++++++++
 
+const movieApiServise = new MoviesApiService();
 
 async function searchMovies(evt) {
   evt.preventDefault();
@@ -19,15 +22,30 @@ async function searchMovies(evt) {
   try {
     const searchFilms = input.value.trim();
     movieApiServise.query = searchFilms;
-    if (movieApiServise.query === '') return;
+    // Якщо інпут пошуку пустий  ==========
+    if (movieApiServise.query === '') {
+      return (error.textContent =
+        'No matches found for your query. Enter the correct movie name.');
+    } else error.textContent = '';
+    // ===========
     await movieApiServise.movieSearch().then(({ results, total_results }) => {
       clearGallaryContainer();
-  
+
       makingMarkup(results);
 
       createPagination(searchFilms, total_results);
       localStorage.setItem('film', JSON.stringify(results));
+
+      // Якщо в базі немає фільму який шукається
+      if (results.length < 1) {
+        return (
+          (error.textContent = `No matches found for your query. Enter the correct movie name.`),
+          (cardsContainer.innerHTML = `          
+          <img src="https://www.minionsallday.com/wp-content/uploads/2016/09/puppy_funny-moments_4.png">`)
+        );
+      } else error.textContent = '';
     });
+    // ================
 
     input.value = '';
   } catch (error) {
