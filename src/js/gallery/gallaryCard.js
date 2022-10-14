@@ -111,7 +111,7 @@ export default function makingMarkup(results) {
                     <p class="info-item">
                         ${genresList(genre_ids)} | ${(
           release_date || first_air_date
-        ).slice(0, 4)}
+        )}
                  <span class='film__rating'>${vote_average.toFixed(
                    1
                  )}</span></p>
