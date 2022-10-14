@@ -120,7 +120,6 @@
   }
 }
 .films__img {
-  height: 464px;
   opacity: 1;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -151,7 +150,7 @@ font-size: 12px;
   text-transform: uppercase;
   margin-bottom: 2px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     font-size: 20px;
       line-height: 24px;
   }
@@ -164,6 +163,10 @@ font-size: 12px;
     line-height: 1.33;
     color: var(--accent-color);
     text-transform:none;
+    @media screen and (min-width: 1024px) {
+        font-size: 20px;
+        line-height: 24px;
+      }
 }
 .film__rating{
   position: absolute;
