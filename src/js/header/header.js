@@ -1,5 +1,5 @@
 
-import mkingMarkup from '../gallery/gallaryCard';
+import makingMarkup from '../gallery/gallaryCard';
 import API_KEY from '../api/apiKey';
 import { createPagination } from '../pagination/pagination-query';
 import MoviesApiService from '../api/api';
