@@ -15,7 +15,7 @@ const cardsContainer = document.querySelector('.cards__list');
 // ++++++++++++++
 
 const movieApiServise = new MoviesApiService();
-const slider = querySelector('.slider-section');
+
 async function searchMovies(evt) {
   evt.preventDefault();
 
@@ -42,7 +42,6 @@ async function searchMovies(evt) {
           (error.textContent = `No matches found for your query. Enter the correct movie name.`),
           (cardsContainer.innerHTML = ` <div class="wrong-box"> <p class="wrong-text">Not Found</p>        
           <img class="img-wrong" src="https://s3.amazonaws.com/stickers.wiki/laughingCStickers/1291222.512.webp"></div>`)
-          
         );
       } else error.textContent = '';
     });
