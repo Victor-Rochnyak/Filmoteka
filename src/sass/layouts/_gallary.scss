@@ -22,9 +22,9 @@
   &:hover {
     box-shadow: 7px -7px 21px rgba(255, 1, 1, 0.6);
 
-    & .films__img {
-      opacity: 0.7;
-    }
+    // & .films__img {
+    //   opacity: 0.7;
+    // }
   }
 
   @media screen and (max-width: 767px) {
