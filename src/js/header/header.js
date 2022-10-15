@@ -41,7 +41,8 @@ async function searchMovies(evt) {
         return (
           (error.textContent = `No matches found for your query. Enter the correct movie name.`),
           (cardsContainer.innerHTML = `          
-          <img src="https://www.minionsallday.com/wp-content/uploads/2016/09/puppy_funny-moments_4.png">`)
+          <img class="img-wrong" src="https://i.pinimg.com/564x/c8/4b/b8/c84bb80e7893a405c1e1865d4b5e0538--symbols-emoticons-emoji-emoticons.jpg">`)
+        
         );
       } else error.textContent = '';
     });
