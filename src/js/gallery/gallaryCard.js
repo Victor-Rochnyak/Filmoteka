@@ -129,14 +129,16 @@ export default function makingMarkup(results) {
 function renderSlider() {
   const markup = moviesApiService.sliderFilms
     .map(
-      ({ id, poster_path, title }) =>
+      ({ id, poster_path, title,vote_average }) =>
         `<div class="swiper-slider__wrapper swiper-slide">
               <img class="slide-img"
               src="${URL_POSTER}/${poster_path}" 
               alt="${title}" "id=${id}" 
               width=""
               />
-
+ <span class='film__rating__slider'>${vote_average.toFixed(
+                   1
+                 )}</span>
           </div>`
     )
     .join('');
