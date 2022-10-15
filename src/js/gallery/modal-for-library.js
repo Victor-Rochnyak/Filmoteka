@@ -22,6 +22,8 @@ function onOpenModal(evt) {
   closeEsc();
   modalEl.classList.add('is-open');
 
+  document.body.classList.add('stop-scrolling');
+
   // const movie_id = evt.target.dataset.id;
   movie_id = evt.target.dataset.id;
 
@@ -197,6 +199,7 @@ function changeTextBtnWatch(btnEl) {
 // Ф-ція закриття модалки
 function onCloseBtn() {
   modalEl.classList.remove('is-open');
+  document.body.classList.remove('stop-scrolling');
 }
 function closeBtn() {
   const btnModalClos = document.querySelector('.close__button__modal');
