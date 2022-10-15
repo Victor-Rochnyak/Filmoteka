@@ -8,7 +8,7 @@
   @media screen and (max-width: 768px) {
     background-image: url(../images/tab-background-library-1x.jpeg);
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 320px) {
     background-image: url(../images/mob-background-library-1x.jpeg);
   }
 }
@@ -36,7 +36,7 @@
 }
 
 .navigation__item:last-child {
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 320px) {
     display: none;
   }
 }
@@ -50,7 +50,7 @@
 .header__library .logo {
   font-weight: 500;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 320px) {
     visibility: hidden;
     display: none;
   }
@@ -120,7 +120,7 @@
 
   min-width: 130px;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 320px) {
     min-width: 100px;
   }
 
