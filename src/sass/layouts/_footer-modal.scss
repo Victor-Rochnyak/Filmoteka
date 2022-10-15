@@ -74,7 +74,7 @@
   -moz-transition: all 0.4s ease-in-out 0.1s;
   -o-transition: all 0.4s ease-in-out 0.1s;
   -webkit-transition: all 0.4s ease-in-out;
-  -webkit-transition-delay: 0.1s;
+  // -webkit-transition-delay: 0.1s;
   transition: all 0.4s ease-in-out 0.1s;
   border-radius: 5px;
 }
@@ -162,18 +162,18 @@
 }
 .foto-ruslan{
 width: 150px;
-height: 90%;
+height: 80%;
 }
 .foto-jeni{
-width:36%;
+width:34%;
 height:93%;
 }
 .foto-andrey{
-  width: 133px;
-  height: 100%;
+  width: 116px;
+  height: 95%;
 }
 .foto-rostislav{
-  height: 90%;
+  height: 84%;
 }
 // !icons
 .img-minions{
@@ -275,6 +275,9 @@ $basicLightbox__timing: ease !default;
 
   &--visible &__placeholder {
     transform: scale(1);
+    @media screen and (min-width: 1899px){
+      transform: scale(2);
+    }
   }
 
 }
