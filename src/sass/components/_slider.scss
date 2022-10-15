@@ -93,5 +93,15 @@
 
 .slide-img:hover {
   transform: scale(1.08) translateZ(0);
-  box-shadow: 0px 0px 25px 10px rgba(255, 120, 0);
+  box-shadow: 0px 0px 15px 10px rgba(255, 120, 0);
+}
+
+.film-cards {
+  overflow-anchor: none
+}
+.cards__list {
+  overflow-anchor: none
+}
+.body {
+  overflow-anchor: none
 }
