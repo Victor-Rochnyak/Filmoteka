@@ -174,7 +174,7 @@ function renderSlider() {
     breakpoints: {
       768: {
         // loop: true,
-        slidesPerView: 3,
+        slidesPerView: 5,
         slidesPerGroup: 1,
         spaceBetween: 60,
         disableOnInteraction: true,
