@@ -48,7 +48,11 @@
 }
 .header__home {
   padding-top: 40px;
-  padding-bottom: 10px;
+  padding-bottom: 28px;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 15px;
+  }
 }
 .navigation {
   font-weight: 500;
@@ -124,6 +128,13 @@
   width: 280px;
   margin: 0 auto 22px;
   justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 394px;
+  }
 }
 .search__input {
   width: 280px;
@@ -140,6 +151,13 @@
   // transition-property: border-bottom;
   // transition-duration: 0.25s;
   // transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 394px;
+  }
 }
 
 ::-webkit-input-placeholder {
@@ -218,4 +236,11 @@
   line-height: 1.17;
   font-weight: 400;
   color: red;
+
+  @media screen and (min-width: 768px) {
+    width: 398px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 398px;
+  }
 }
