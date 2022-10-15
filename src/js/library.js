@@ -9,7 +9,7 @@ btnWatched.addEventListener('click', showListWatched);
 btnQueue.addEventListener('click', showListQueue);
 
 export function showListWatched(e) {
-  // e.preventDefault();
+  e.preventDefault();
 
   libGalleryRef.innerHTML = '';
   btnWatched.classList.add('activ');
@@ -38,6 +38,8 @@ export function showListQueue(e) {
 }
 
 function Render(obj) {
+  
+  //debugger; 
   const markup = obj
     .map(
       ({
@@ -49,6 +51,7 @@ function Render(obj) {
         release_date,
         first_air_date,
       }) => {
+        let date = (release_date || first_air_date || 'n/a ').slice(0, 4);
         return `<div class="movie-card">
                 <img width="100%" height="402" class="movie-card__img"
                 src="${setPosters(poster_path)}" alt="" data-id="${id}"
@@ -59,9 +62,7 @@ function Render(obj) {
                         <b>${title || name}</b>
                     </p>
                     <p class="info-item">
-                        <b>${genresList(genre_ids)} | ${(
-            release_date || first_air_date
-          ).slice(0, 4)}</b>                  
+                        <b>${genresList(genre_ids)} | ${date}</b>                  
                 </div>
             </div>`;
       }
@@ -104,4 +105,25 @@ function genresList(array) {
   return genre_names;
 }
 
-showListWatched();
+function onLoad() {
+  
+  let listWt = load('watched');
+  
+  if (listWt && listWt.length>0) {    
+    Render(listWt);
+    btnWatched.classList.add('activ');
+    return;
+  }
+
+  let listQue = load('queue');
+  
+  if (listQue && listQue.length>0) {
+    Render(listQue);
+    btnQueue.classList.add('activ');
+    return;
+  }  
+  
+}
+
+onLoad();
+
