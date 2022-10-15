@@ -41,8 +41,7 @@ async function searchMovies(evt) {
         return (
           (error.textContent = `No matches found for your query. Enter the correct movie name.`),
           (cardsContainer.innerHTML = `          
-          <img class="img-wrong" src="https://i.pinimg.com/564x/c8/4b/b8/c84bb80e7893a405c1e1865d4b5e0538--symbols-emoticons-emoji-emoticons.jpg">`)
-        
+          <img class="img-wrong" src="https://s3.amazonaws.com/stickers.wiki/laughingCStickers/1291222.512.webp">`)
         );
       } else error.textContent = '';
     });
