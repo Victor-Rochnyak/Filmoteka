@@ -1,7 +1,7 @@
 import { URL_POSTER } from '../api/baseUrls';
 import MoviesApiService from '../api/api';
 import { createPagination } from '../pagination/pagination';
-// import {renderSlider} from '../slider';
+// import renderSlider from '../slider';
 
 const homeCardsContainer = document.querySelector('.cards__list--home');
 const sliderContainerRef = document.querySelector('.swiper-wrapper');
@@ -25,7 +25,7 @@ moviesApiService
 moviesApiService
   .fetchTrendingMovies()
   .then(({ results, total_results }) => {
-    // renderSlider(results);
+    renderSlider(results);
     makingMarkup(results);
 
     createPagination(total_results);
@@ -35,7 +35,6 @@ moviesApiService
     // }
   })
   .catch(error => console.log(error));
-
 
 // moviesApiService
 // .fetchSearchingMovies()
@@ -107,7 +106,7 @@ export default function makingMarkup(results) {
 
                 <div class="info">
                     <p class="info-item ">
-                        ${title || name } 
+                        ${title || name} 
                     </p>
                     <p class="info-item">
                         ${genresList(genre_ids)} | ${data}
@@ -125,12 +124,13 @@ export default function makingMarkup(results) {
   function insertFilmsMarkup(filmsMarkup) {
     homeCardsContainer.insertAdjacentHTML('beforeend', filmsMarkup);
   }
+}
 
-  function renderSlider() {
-    const markup = moviesApiService.sliderFilms
-      .map(
-        ({ id, poster_path, title }) =>
-          `<div class="swiper-slider__wrapper swiper-slide">
+function renderSlider() {
+  const markup = moviesApiService.sliderFilms
+    .map(
+      ({ id, poster_path, title }) =>
+        `<div class="swiper-slider__wrapper swiper-slide">
               <img class="slide-img"
               src="${URL_POSTER}/${poster_path}" 
               alt="${title}" "id=${id}" 
@@ -138,89 +138,70 @@ export default function makingMarkup(results) {
               />
 
           </div>`
-      )
-      .join('');
+    )
+    .join('');
 
-    sliderContainerRef.insertAdjacentHTML('beforeend', markup);
+  sliderContainerRef.insertAdjacentHTML('beforeend', markup);
 
-    // function renderSlider() {
-    //   const markup = moviesApiService.sliderFilms
-    //     .map(
-    //       ({ id, poster_path, title }) =>
-    //         `<div class="swiper-slider__wrapper swiper-slide">
-    //               <img class="slide-img"
-    //               src="${URL_POSTER}/${poster_path}"
-    //               alt="${title}" "id=${id}"
-    //               width=""
-    //               />
+  const swiper = new Swiper('.swiper', {
+    disableOnInteraction: true,
+    slidesPerView: 7,
+    slidesPerGroup: 1,
+    spaceBetween: 65,
+    speed: 2500,
+    // // centralSlides: true,
+    loop: true,
 
-    //           </div>`
-    //     )
-    //     .join('');
+    grabCursor: true,
+    effect: 'coverflow',
+    coverflowEffect: {
+      depth: 70,
+      rotate: 8,
+      stretch: 50,
+      slideShadows: false,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    autoplay: {
+      delay: 1,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    // freeMode: true,
 
-    //     sliderContainerRef.insertAdjacentHTML('beforeend', markup);
-
-    //   const swiper = new Swiper('.swiper', {
-    //     disableOnInteraction: true,
-    //     slidesPerView: 7,
-    //     slidesPerGroup: 1,
-    //     spaceBetween: 65,
-    //     speed: 2500,
-    //     // centralSlides: true,
-    //     loop: true,
-
-    //     grabCursor: true,
-    //     effect: 'coverflow',
-    //     coverflowEffect: {
-    //       //modifier:5, //для mobile
-    //       depth: 70,
-    //       rotate: 8,
-    //       stretch: 50,
-    //       slideShadows: false,
-    //     },
-    //     navigation: {
-    //       nextEl: '.swiper-button-next',
-    //       prevEl: '.swiper-button-prev',
-    //     },
-    //     autoplay: {
-    //       delay: 1,
-    //       disableOnInteraction: false,
-    //       pauseOnMouseEnter: true,
-    //     },
-    //     freeMode: true,
-
-    //     breakpoints: {
-    //       768: {
-    //         loop: true,
-    //         slidesPerView: 3,
-    //         slidesPerGroup: 1,
-    //         spaceBetween: 60,
-    //         disableOnInteraction: true,
-    //         navigation: {
-    //           enabled: true,
-    //         },
-    //       },
-    //       1200: {
-    //         loop: true,
-    //         slidesPerView: 5,
-    //         slidesPerGroup: 1,
-    //         spaceBetween: 65,
-    //         disableOnInteraction: true,
-    //         navigation: {
-    //           enabled: true,
-    //         },
-    //       },
-    //       1500: {
-    //         loop: true,
-    //         slidesPerView: 5,
-    //         slidesPerGroup: 1,
-    //         spaceBetween: 58,
-    //         disableOnInteraction: true,
-    //         navigation: {
-    //           enabled: true,
-    //         },
-    //       },
-    //     },
-    //   });
-  }
+    breakpoints: {
+      768: {
+        // loop: true,
+        slidesPerView: 3,
+        slidesPerGroup: 1,
+        spaceBetween: 60,
+        disableOnInteraction: true,
+        navigation: {
+          enabled: true,
+        },
+      },
+      1200: {
+        // loop: true,
+        slidesPerView: 5,
+        slidesPerGroup: 1,
+        spaceBetween: 65,
+        disableOnInteraction: true,
+        navigation: {
+          enabled: true,
+        },
+      },
+      1500: {
+        // loop: true,
+        slidesPerView: 7,
+        slidesPerGroup: 1,
+        spaceBetween: 58,
+        disableOnInteraction: true,
+        navigation: {
+          enabled: true,
+        },
+      },
+    },
+  });
 }

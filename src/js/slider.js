@@ -1,16 +1,14 @@
-// import MoviesApiService from './api/api';
-// // import { URL_TRENDING_FILMS } from '../api/baseUrls';
+import MoviesApiService from './api/api';
+// import { URL_TRENDING_FILMS } from '../api/baseUrls';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { URL_POSTER } from './api/baseUrls';
-// const moviesApiService = new MoviesApiService();
-// const sliderContainerRef = document.querySelector('.swiper-wrapper');
-// const sliderFetch = moviesApiService.fetchTrendingMovies().then((results) => {
+import { URL_POSTER } from './api/baseUrls';
+const moviesApiService = new MoviesApiService();
+const sliderContainerRef = document.querySelector('.swiper-wrapper');
+//  moviesApiService.fetchTrendingMovies().then((results) => {
 //   renderSlider(results);
 // });
 
-
-// function renderSlider() {
-// export function renderSlider() {
+// export default function renderSlider() {
 
 //   const markup = moviesApiService.sliderFilms
 //     .map(
