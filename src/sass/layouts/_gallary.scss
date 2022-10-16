@@ -13,11 +13,11 @@
 }
 .movie-card {
   position: relative;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.88);
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
-  transition: box-shadow 50ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: scale 300ms, box-shadow 50ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     box-shadow: 0 0 7px 5px #7b3a02;
     scale:(1.02);
@@ -137,7 +137,8 @@ position: absolute;
   background-color: var(--accent-color);
   color: var(--second-text-color);
   border-radius: 5px;
-  top:10px
+  top:10px;
+  transition: scale 250ms,
 }
 
 // !header-pictures-wromg
@@ -146,3 +147,6 @@ position: absolute;
 
 }
 
+.swiper-slider__wrapper:hover .film__rating__slider{
+  scale:1.3;
+  }
