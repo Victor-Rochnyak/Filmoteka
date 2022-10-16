@@ -63,7 +63,6 @@ import axios from 'axios';
 import API_KEY from '../api/apiKey';
 import { URL_TRENDING_FILMS } from '../api/baseUrls';
 import { URL_GENRES } from '../api/baseUrls';
-import { startLoader, removeLoader } from '../components/loader';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 export default class MoviesApiService {
@@ -94,18 +93,32 @@ export default class MoviesApiService {
   // }
 
   async movieSearch() {
+    Loading.pulse('Please wait...', {
+      backgroundColor: 'rgba(0,0,0,0.8)',
+      svgSize: '200',
+      svgColor: '#ff6b09',
+      // messageFontSize:'40px',
+      messageColor: '#ff6b09',
+    });
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&page=${this._page}`;
     const response = await axios.get(url);
+    Loading.remove(1500);
     return response.data
   }
   //slider and galerry
   async fetchTrendingMovies() {
     try {
-      startLoader;
+      Loading.pulse('Please wait...', {
+            backgroundColor: 'rgba(0,0,0,0.8)',
+            svgSize: '200',
+            svgColor: '#ff6b09',
+            // messageFontSize:'40px',
+            messageColor: '#ff6b09',
+          });
       const url = `${URL_TRENDING_FILMS}trending/movie/day?&api_key=${API_KEY}&page=${this._page}`;
       const response = await axios.get(url);
       this.sliderFilms = response.data.results;
-      removeLoader;
+      Loading.remove(1500);
 
       return this.sliderFilms, response.data;
     } catch (error) {
