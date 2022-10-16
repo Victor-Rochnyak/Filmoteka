@@ -305,7 +305,7 @@ function murckupCard({
               ${
                 backdrop_path
                   ? `url('https://image.tmdb.org/t/p/original/${backdrop_path}');`
-                  : `url('https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg');`
+                  : `url(/src/images/back-drop.jpg);`
               }
               background-size:cover; 
               background-position: center;">
