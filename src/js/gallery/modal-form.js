@@ -299,7 +299,11 @@ function murckupCard({
   return (modalEl.innerHTML = `
   <div class='modal__backdrop'
               style="background-image:linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-              url('https://image.tmdb.org/t/p/original/${backdrop_path}');
+              ${
+                backdrop_path
+                  ? `url('https://image.tmdb.org/t/p/original/${backdrop_path}');`
+                  : `url('https://i.pinimg.com/originals/74/3d/b2/743db230d891b47c1d8c66b161111b91.jpg');`
+              }
               background-size:cover; 
               background-position: center;">
   </div>
