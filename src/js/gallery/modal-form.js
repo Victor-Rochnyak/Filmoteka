@@ -1,5 +1,6 @@
 // import API_KEY from '../api/apiKey';
 import { load, save, remove } from './local-st-load-remove-save';
+import trailer from './trailer';
 
 const galleryFilm = document.querySelector('.cards__list--home');
 const modalEl = document.querySelector('.modal');
@@ -37,6 +38,7 @@ function onOpenModal(evt) {
   // ____________local st----
 
   murckupCard(oneFilmById);
+
   closeBtn();
   backdropClose();
 
@@ -296,7 +298,8 @@ function murckupCard({
   id,
   backdrop_path,
 }) {
-  return (modalEl.innerHTML = `
+  return (
+    (modalEl.innerHTML = `
   <div class='modal__backdrop'
               style="background-image:linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
               ${
@@ -309,13 +312,17 @@ function murckupCard({
   </div>
   <div class='modal__container'>
     <div class='film__image'>
+    <div class="btn-id">
+      <button data-id='${id}' class="btn-youtube">
+    </div>
       <img
-        class='image'
+        class='image modal-movie__img'
         src='${setPosters(poster_path)}'
         alt='${title || name}'
         title=''
         width='336'
       />
+      
     </div>
 
     <div class='film__information'>
@@ -364,7 +371,9 @@ function murckupCard({
     </button>
     </div>
   </div>
-  `);
+  `),
+    trailer.createTrailerLink(document.querySelectorAll('.btn-youtube'))
+  );
 }
 
 // --------------------------------------------

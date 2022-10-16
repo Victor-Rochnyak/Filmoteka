@@ -1,0 +1,13 @@
+.btn-youtube {
+  position: absolute;
+  z-index: 1;
+  width: 275px;
+  height: 40px;
+  margin-left: 2px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background-image: url(/src/images/youtube-icon.svg);
+  background-color: initial;
+}
