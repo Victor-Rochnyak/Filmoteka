@@ -1,74 +1,59 @@
-import * as basicLightbox from 'basiclightbox';
 import axios from 'axios';
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
 
-let trailer;
-const mainContainer = document.querySelector('.container__main');
+const API_KEYS = '74cf07cbcff58397c32fe332f07646fa';
 
-export default function onTrailerClick() {
-  mainContainer.addEventListener('click', watchTrailer);
+function createTrailerLink(elementRef) {
+  const trailerBtn = elementRef;
+  trailerBtn.forEach(el =>
+    el.addEventListener('click', e => {
+      drawModalForTrailler(e.target.dataset.id);
+    })
+  );
 }
 
-///// Click event listener /////
-function watchTrailer(e) {
-  e.preventDefault();
-  if (
-    e.target.closest('.card__link')?.querySelector('card__poster') === undefined
-  ) {
-    return;
-  }
+async function drawModalForTrailler(id_film) {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id_film}/videos?api_key=${API_KEYS}`,
+      {
+        params: {
+          api_key: API_KEYS,
+        },
+      }
+    );
 
-  fetchTrailer(e.target.closest('.card__link').id)
-    .then(renderTrailer)
-    .catch(error => {
-      console.log(error);
-    });
-}
-
-///// Fetch movie by ID /////
-function fetchTrailer(filmID, lang) {
-  return axios
-    .get(
-      `https://api.themoviedb.org/3/movie/${filmID}/videos?api_key=daf1fe8995a61d2fecc007eaa464ca98&language=${lang}`
-    )
-    .then(response => response.data)
-    .then(data => {
-      return data.results;
-    });
-}
-
-///// Render trailer modal /////
-
-function renderTrailer(data) {
-  let key = '';
-  data.forEach(obj => {
-    if (obj.name.includes('Official')) {
-      key = obj.key;
+    const data = response.data.results;
+    if (data.length === 0 || data === undefined) {
+      alert('Sorry, trailer not found.');
+      return;
     }
-  });
 
-  creatTrailerLink(key);
+    // const key = data[0].key;
 
-  // Close trailer by Escape
-  window.addEventListener('keydown', closeTrailerByEsc);
-  function closeTrailerByEsc(e) {
-    if (e.code === 'Escape') {
-      trailer.close();
-      window.removeEventListener('keydown', closeTrailerByEsc);
-    }
-  }
-}
+    let key = '';
+    data.forEach(obj => {
+      if (obj.name.includes('Official')) {
+        key = obj.key;
+      }
+    });
+    console.log(key);
 
-function creatTrailerLink(key) {
-  trailer = basicLightbox.create(`
-    <iframe width="320" height="240" src='https://www.youtube.com/embed/${key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="trailer_video"></iframe>
+    const instance = basicLightbox.create(`
+    <div class="modal__youtube">
+    <iframe src="https://www.youtube.com/embed/${key}" width="640" height="480" frameborder="0"></iframe>
+    </div>
   `);
+    instance.show();
+  } catch (error) {
+    const instance = basicLightbox.create(`
+      <div class="modal__youtube">
+        <iframe width="100%" height="315" src='http://www.youtube.com/embed/zwBpUdZ0lrQ' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>`);
 
-  setTimeout(() => {
-    const trailerBtn = document.querySelector('.modal-movie__img');
-    trailerBtn.addEventListener('click', showTrailer);
-  }, 300);
-
-  function showTrailer() {
-    trailer.show();
+    instance.show();
   }
 }
+
+export default { createTrailerLink };

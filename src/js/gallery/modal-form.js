@@ -1,6 +1,6 @@
 // import API_KEY from '../api/apiKey';
 import { load, save, remove } from './local-st-load-remove-save';
-import onTrailerClick from './trailer';
+import trailer from './trailer';
 
 const galleryFilm = document.querySelector('.cards__list--home');
 const modalEl = document.querySelector('.modal');
@@ -38,6 +38,7 @@ function onOpenModal(evt) {
   // ____________local st----
 
   murckupCard(oneFilmById);
+
   closeBtn();
   backdropClose();
 
@@ -307,23 +308,17 @@ function murckupCard({
   </div>
   <div class='modal__container'>
     <div class='film__image'>
+    <div class="btn-id">
+      <button data-id='${id}' class="btn-youtube">
+    </div>
       <img
-        class='image'
+        class='image modal-movie__img'
         src='${setPosters(poster_path)}'
         alt='${title || name}'
         title=''
         width='336'
       />
-       <button class='btn-trailer' type='button' aria-label='play movie trailer'>
-      <svg class='btn-trailer__svg' width='68' height='48' viewBox='0 0 68 48'>
-        <path
-          class='btn-trailer__path'
-          d='M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z'
-          fill='#212121'
-        ></path>
-        <path d='M 45,24 27,14 27,34' fill='#fff'></path>
-      </svg>
-    </button>
+      
     </div>
 
     <div class='film__information'>
@@ -373,7 +368,7 @@ function murckupCard({
     </div>
   </div>
   `),
-    onTrailerClick()
+    trailer.createTrailerLink(document.querySelectorAll('.btn-youtube'))
   );
 }
 
