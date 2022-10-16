@@ -16,11 +16,11 @@ const closeModal = document.querySelector('.button-close');
 const modal =document.querySelector('.modal-footer');
 
 
-const instance = basicLightbox.create(
+const teamModal = basicLightbox.create(
 	document.querySelector('#modalsection')
 )
 openModal.addEventListener('click', ()=>{
-    instance.show()
+    teamModal.show()
 })
 // instance.show()
 
