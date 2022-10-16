@@ -42,7 +42,7 @@ async function drawModalForTrailler(id_film) {
 
     const instance = basicLightbox.create(`
     <div class="modal__youtube">
-    <iframe src="https://www.youtube.com/embed/${key}" width="640" height="480" frameborder="0"></iframe>
+    <iframe src="https://www.youtube.com/embed/${key}" width="640" height="480" frameborder="0" allowfullscreen></iframe>
     </div>
   `);
     instance.show();
