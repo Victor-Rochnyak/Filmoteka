@@ -36,8 +36,10 @@
   }
 }
 .container-icon__modal:hover {
-  width: 80px;
-  transition: width 300ms ease-in-out 0s, background-color 100ms linear 220s;
+  background-color: #fff;
+}
+.icon-fab:hover{
+  color: #000;
 }
 .container-icon__modal:after {
   content: attr(tooltip);

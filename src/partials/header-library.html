@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="/src/sass/index.scss" />
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
+<link rel="stylesheet" href="/src/sass/index.scss"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<include src="./partials/modal-gallary.html"></include>
 <header class="header__library">
   <div class="container header__container">
     <a class="link" href="/src/index.html">
@@ -15,181 +15,161 @@
           <a class="navigation__link link" href="/src/index.html">Home</a>
         </li>
         <li class="navigation__item">
-          <a
-            class="navigation__link current link"
-            href="/src/partials/header-library.html"
-          >
-            My Library</a
-          >
+          <a class="navigation__link current link" href="/src/partials/header-library.html">
+            My Library</a>
         </li>
         <li class="navigation__item">
-          <a
-            class="link"
-            href="https://prytulafoundation.org/uk/home/support_page"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="link" href="https://prytulafoundation.org/uk/home/support_page" target="_blank"
+            rel="noopener noreferrer">
             <svg class="support__icon" width="60" height="40">
-              <use
-                href="/src/images/svg/symbol-defs.svg#icon-Flag_of_Ukraine"
-              ></use>
+              <use href="/src/images/svg/symbol-defs.svg#icon-Flag_of_Ukraine"></use>
             </svg>
           </a>
         </li>
       </ul>
     </nav>
   </div>
-   <form>
-        <div role="group">
-          <ul class="storage">
-            <li class="storage__item">
-              <label class="storage__label">
-                <button class="storage__input visuallyhidden btnWatched" >
-                <span class="storage__btn" id="js-WatchedButton">Watched</span>
-                </button>
-              </label>
-            </li>
-            <li class="storage__item">
-              <label class="storage__label">
-                <button class="storage__input visuallyhidden btnQueue">
-                <span class="storage__btn" id="js-QueueButton">Queue</span>
-                </button>
-              </label>
-            </li>
-          </ul>
-        </form>
-        <script type="module" src="../js/library.js"></script>
+  <form>
+    <div role="group">
+      <ul class="storage">
+        <li class="storage__item">
+          <label class="storage__label">
+            <button class="storage__input visuallyhidden btnWatched">
+              <span class="storage__btn" id="js-WatchedButton">Watched</span>
+            </button>
+          </label>
+        </li>
+        <li class="storage__item">
+          <label class="storage__label">
+            <button class="storage__input visuallyhidden btnQueue">
+              <span class="storage__btn" id="js-QueueButton">Queue</span>
+            </button>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </form>
+  
+  
 </header>
 <main>
   <section class="film-cards color">
-  <h2 class="visually-hidden">Film cards</h2>
-  <div class="cards__container container">
-    <ul class="cards__list cards__list--home list">
-    </ul>
-  </div>
-      <include src="./partials/modal-gallary.html"></include>
-</section>
-<div class="container">
+    <h2 class="visually-hidden">Film cards</h2>
+    <div class="cards__container container">
+      <ul class="cards__list cards__list--home list">
+      </ul>
+    </div>
+    
+  </section>
+  <div class="container">
     <a href="#" id="toTop">
-      <span
-        ><img
-          class="to-top-arrow"
-          src="/src/images/ghost3.png"
-          alt="arrow-to-top"
-      /></span>
+      <span><img class="to-top-arrow" src="/src/images/ghost3.png" alt="arrow-to-top"/></span>
     </a>
   </div>
-  <script type="module" src="../js/scroll.js"></script>
+  
 </main>
- <footer class="footer ">
+<footer class="footer ">
   <div class="container">
     <div class="footer-left">
       <a href="#" class="footer-left__logo" lang="en">
         <svg class="footer-left__logo--animated" width="30" height="30">
           <use href="/src/images/svg/symbol-defs.svg#film"></use>
         </svg>
-        <span class="footer-left__title">Filmoteka</span> 
+        <span class="footer-left__title">Filmoteka</span>
       </a>
-    </div> 
+    </div>
     <!-- Футер контакти -->
     <div class=" footer__section">
-    <address class="address-footer">
-      <p class="address-footer__contacts">CONTACT US</p>
-      <a href="https://goo.gl/maps/B5wJ3eTb47fZjkf17" class="address-footer__text" target="_blank" rel="noopener noreferrer">
-
-        <svg class="address-footer__icon" width="14" height="14">
-          <use href="/src/images/svg/symbol-defs.svg#icon-location"></use>
-        </svg>
-        <span class="adres-map">Kyiv,  Evgena Konovaltsia Street 36</span>
-      </a>
-      <ul class="address-footer__item">
-        <li class="address-footer__list">
-          <a href="mailto:info@example.com" class="address-footer__link"  target="_blank" rel="noopener noreferrer">
-            <svg class="address-footer__icon" width="14" height="14">
-                <use href="/src/images/svg/symbol-defs.svg#icon-mail">
-            </svg>
-            info@example.com</a>
-        </li>
-        <li class="address-footer__list">
-          <a href="tel:+380673269592" class="address-footer__link"  target="_blank" rel="noopener noreferrer">
-            <svg class="address-footer__icon" width="14" height="14">
-                <use href="/src/images/svg/symbol-defs.svg#icon-phone">
-            </svg>
-            +38 067 326 9592</a>
-        </li>
-      </ul>
-    </address>
-
-    <!-- футер соцеальні мережі -->
-    <div class="footer-social">
-      <p class="footer-social__join">SOCIAL</p>
-      <ul class="footer-modal__students">
-        <li class="footer-modal__student">
+      <address class="address-footer">
+        <p class="address-footer__contacts">CONTACT US</p>
+        <a href="https://goo.gl/maps/B5wJ3eTb47fZjkf17" class="address-footer__text" target="_blank"
+          rel="noopener noreferrer">
+          <svg class="address-footer__icon" width="14" height="14">
+            <use href="/src/images/svg/symbol-defs.svg#icon-location"></use>
+          </svg>
+          <span class="adres-map">Kyiv, Evgena Konovaltsia Street 36</span>
+        </a>
+        <ul class="address-footer__item">
+          <li class="address-footer__list">
+            <a href="mailto:info@example.com" class="address-footer__link" target="_blank" rel="noopener noreferrer">
+              <svg class="address-footer__icon" width="14" height="14">
+                <use href="/src/images/svg/symbol-defs.svg#icon-mail"></use>
+              </svg>
+              info@example.com</a>
+          </li>
+          <li class="address-footer__list">
+            <a href="tel:+380673269592" class="address-footer__link" target="_blank" rel="noopener noreferrer">
+              <svg class="address-footer__icon" width="14" height="14">
+                <use href="/src/images/svg/symbol-defs.svg#icon-phone"></use>
+              </svg>
+              +38 067 326 9592</a>
+          </li>
+        </ul>
+      </address>
+      <!-- футер соцеальні мережі -->
+      <div class="footer-social">
+        <p class="footer-social__join">SOCIAL</p>
+        <ul class="footer-modal__students">
+          <li class="footer-modal__student">
             <!-- ! Icons -->
-            <div class="container-social" >
-            <a class="container-link" href="#">
-                <div class="container-section " >
-                    <div class="container-icon__footer GitHub" tooltip="Github" >
-                        <i class="fab fa-github fa-lg" ></i>
-                    </div>
-                </div>
-            </a>
-            <a class="container-link" href="#">
+            <div class="container-social">
+              <a class="container-link" href="#">
                 <div class="container-section ">
-                    <div class="container-icon__footer instagram" tooltip="Instagram">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </div>
+                  <div class="container-icon__footer GitHub">
+                    <i class="fab fa-github fa-lg"></i>
+                  </div>
                 </div>
-            </a>
-            <a class="container-link" href="#">
+              </a>
+              <a class="container-link" href="#">
                 <div class="container-section ">
-                    <div class="container-icon__footer linkedin" tooltip="LinkedIn">
-                        <i class="fab fa-linkedin fa-lg"></i>
-                    </div>
+                  <div class="container-icon__footer instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                  </div>
                 </div>
-            </a>
+              </a>
+              <a class="container-link" href="#">
+                <div class="container-section">
+                  <div class="container-icon__footer linkedin">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                  </div>
+                </div>
+              </a>
             </div>
-        </li>
-    </ul>
-    </div>
-    <!-- Наші Додатки -->
-    <div class="footer-aplication">
-      <p class="footer-aplication__title">DOWNLOAD APP</p>
+          </li>
+        </ul>
+      </div>
+      <!-- Наші Додатки -->
+      <div class="footer-aplication">
+        <p class="footer-aplication__title">DOWNLOAD APP</p>
 
 
-      <ul class="footer-modal__students">
-        <li class="footer-modal__student">
+        <ul class="footer-modal__students">
+          <li class="footer-modal__student">
             <!-- icons -->
-            <div class="container-social" >
-            <a class="container-link" href="#">
-                <div class="container-section " >
-                    <div class="container-icon__footer google " tooltip=" GooglePlay" >
-                        <i class="fab fa-google lg" width="20px" height="10px"></i>
-                    </div>
-                </div>
-            </a>
-            <a class="container-link" href="#">
+            <div class="container-social">
+              <a class="container-link" href="#">
                 <div class="container-section ">
-                    <div class="container-icon__footer  applestore" tooltip=" Apple Store">
-                        <i class="fab fa-apple fa-lg"></i>
-                    </div>
+                  <div class="container-icon__footer google">
+                    <i class="fab fa-google lg"></i>
+                  </div>
                 </div>
-            </a>
+              </a>
+              <a class="container-link" href="#">
+                <div class="container-section ">
+                  <div class="container-icon__footer  applestore">
+                    <i class="fab fa-apple fa-lg"></i>
+                  </div>
+                </div>
+              </a>
             </div>
-        </li>
-    </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-
-
-
-
     <!-- Копірайт -->
     <div class="footer-copyright">
       <p class="footer-copyright__text">
-        <span class="footer-copyright__left"
-          >© 2022 | All Rights Reserved |</span
-        >
+        <span class="footer-copyright__left">© 2022 | All Rights Reserved |</span>
       </p>
       <p class="footer-copyright__students">
         <span class="footer-copyright__develop"> Developed with </span>
@@ -203,5 +183,5 @@
   </div>
 </footer>
 
-
-
+<script type="module" src="../js/library.js"></script>
+<script type="module" src="../js/scroll.js"></script>
