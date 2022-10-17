@@ -35,12 +35,8 @@
     padding: 5px 5px 5px 12px;
   }
 }
-.container-icon__modal:hover {
-  background-color: #fff;
-}
-.icon-fab:hover{
-  color: #000;
-}
+
+
 .container-icon__modal:after {
   content: attr(tooltip);
   margin-left: 15px;
@@ -289,4 +285,9 @@ $basicLightbox__timing: ease !default;
     display: none;
     
   }
+}
+.container-icon__modal:hover{
+  background-color: #ff6b08;
+  box-shadow: 5px 5px 8px rgba(235, 97, 6, 0.9);
+  transition: 300ms ease-in-out 0s;
 }
