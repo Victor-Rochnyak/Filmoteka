@@ -197,15 +197,14 @@ height:93%;
 
 
 
-
 // $basicLightbox__background: rgba(0, 0, 0, .8);
-$basicLightbox__background: rgba(0, 0, 0, .8); // Background color
-$basicLightbox__zIndex: 1000; // Stack order
-$basicLightbox__duration: .4s; // Transition duration
-$basicLightbox__timing: ease; // Transition timing
-$basicLightbox__zIndex: 1000 !default;
-$basicLightbox__duration: .4s !default;
-$basicLightbox__timing: ease !default;
+// $basicLightbox__background: rgba(0, 0, 0, .8); // Background color
+// $basicLightbox__zIndex: 1000; // Stack order
+// $basicLightbox__duration: .4s; // Transition duration
+// $basicLightbox__timing: ease; // Transition timing
+// $basicLightbox__zIndex: 1000 !default;
+// $basicLightbox__duration: .4s !default;
+// $basicLightbox__timing: ease !default;
 
 
 
@@ -220,14 +219,13 @@ $basicLightbox__timing: ease !default;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(to right, rgba(21, 232, 123, 0.6), rgba(53, 65, 198, 0.6));
-  background: $basicLightbox__background;
+  background: rgba(0, 0, 0, .8);
   
   background-size: cover;
   background-repeat: no-repeat;
   opacity: .01; // Start with .01 to avoid the repaint that happens from 0 to .01
-  transition: opacity $basicLightbox__duration $basicLightbox__timing;
-  z-index: $basicLightbox__zIndex;
+  transition: opacity 0.4 ease;
+  z-index: 1000;
   will-change: opacity;
 
   &--visible {
@@ -237,7 +235,7 @@ $basicLightbox__timing: ease !default;
   &__placeholder {
     max-width: 100%;
     transform: scale(.9);
-    transition: transform $basicLightbox__duration $basicLightbox__timing;
+    transition: transform 0.4 ease;
     z-index: 1;
     will-change: transform;
 
@@ -277,11 +275,16 @@ $basicLightbox__timing: ease !default;
 
   &--visible &__placeholder {
     transform: scale(1);
-    @media screen and (min-width: 1899px){
-      transform: scale(2);
-    }
+    // @media screen and (min-width: 1899px){
+    //   transform: scale(2);
+    // }
   }
 
+}
+.footer-modal-backdrop > .basicLightbox__placeholder {
+  @media screen and (min-width: 1899px){
+     scale: (2);
+  }
 }
 
 .basicLightbox.basicLightbox--visible{
@@ -289,4 +292,17 @@ $basicLightbox__timing: ease !default;
     display: none;
     
   }
+}
+// .footer-modal-backdrop{
+// background-image: url('../images/demonstration/puppy_funny-moments_4.png');
+// }
+
+.basicLightbox.footer-modal-backdrop {
+  background-image: linear-gradient(to right, rgba(94, 99, 96, 0.6), rgba(74, 74, 79, 0.6)),
+   url('/src/images/demonstration/puppy_funny-moments_4.png');
+   background-size: cover;
+  background-repeat: no-repeat;
+  // @media screen and (min-width: 1899px){
+  //   transform: scale(2);
+  // }
 }
