@@ -1,69 +1,39 @@
-//  const galleryRef = document.querySelector(".gallery");
-// const URL_TRENDING_FILMS = 'https://api.themoviedb.org/3/trending/all/day?api_key=74cf07cbcff58397c32fe332f07646fa';
-// const URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list?api_key=74cf07cbcff58397c32fe332f07646fa&language=en-US';
 
-// async function getPopularFilms() {
-//     try {
-//         const responseFilms = await fetch(URL_TRENDING_FILMS);
-//         const responseGenres = await fetch(URL_GENRES);
-//        // debugger;
-//         const dataFilms = await responseFilms.json();
-//         const dataGenres = await responseGenres.json();
-//         //console.log(dataFilms.results.length, dataGenres.genres.length);
-//         saveDataToLocalStorage(dataGenres.genres, 'genres');
 
-//         if (!dataFilms.results.length) {
-//             console.log("Нет популярных фильмов");
-//             return;
-//         }
-
-//         render(dataFilms.results);
-
-//     }
-//     catch(error)    {
-//         console.log(error, "Что-то пошло не так");
-//     }
-// }
-
-// function render(data) {
-//     //debugger;
-//     const genres = getDataFromLocalStorage('genres');
-//     console.log(genres);
-//     const markup = data.map(({poster_path, title, name, release_date, first_air_date, genre_ids
-//     }) => {
-//         let str = `<div class="photo-card"><a class="link" href=""><img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="" loading="lazy" /></a>
-//            <div class="info"><p class="film-name">${title}</p><p class="genre">${genre_ids} | ${release_date}</p></div></div>`;
-//         console.log(str);
-//         return str;
-//     }).join("");
-//     console.log(markup);
-//     galleryRef.insertAdjacentHTML("beforeend", markup);
-// }
-
-// function saveDataToLocalStorage(data, key) {
-//     try {
-//         localStorage.setItem(key, JSON.stringify(data));
-//     }catch (error) {
-//     console.error("Set state error: ", error.message);
-//   }
-// }
-
-// function getDataFromLocalStorage(key) {
-//     try {
-//         const data = localStorage.getItem(key);
-//         return data === null ? undefined : JSON.parse(data);
-//     }catch(error) {
-//     console.error("Get state error: ", error.message);
-//   }
-// }
-
-//
-// getPopularFilms();
 import axios from 'axios';
 import API_KEY from '../api/apiKey';
 import { URL_TRENDING_FILMS } from '../api/baseUrls';
 import { URL_GENRES } from '../api/baseUrls';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
+
+
+
+function scrollTo(to, duration = 700) {
+  const element = document.scrollingElement || document.documentElement,
+    start = element.scrollTop,
+    change = to - start,
+    startDate = +new Date(),
+    
+    easeInOutQuad = function (t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    },
+    animateScroll = function () {
+      const currentDate = +new Date();
+      const currentTime = currentDate - startDate;
+      element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
+      if (currentTime < duration) {
+        requestAnimationFrame(animateScroll);
+      } else {
+        element.scrollTop = to;
+      }
+    };
+  animateScroll();
+}
+
 
 export default class MoviesApiService {
   constructor() {
@@ -72,27 +42,10 @@ export default class MoviesApiService {
     this.sliderFilms = [];
   }
 
-  //  async fetchSearchingMovies() {
-  //   // https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${this._page}&include_adult=false&query=${this.searchQuery}
-  //    try{
-  //     const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&=page${this._page}`;
-  //     const response = await axios.get(url);
 
-  //     this.searchQuery = response.data.results
-  //     return this.searchQuery
-  //    } catch (error) {
-  //     Notify.failure('Oops, an error occurred');
-  //   }
-  // }
-  // async movieSearch() {
-  //   const resp = await fetch(
-  //     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=${this.searchQuery}&=page${this._page}`
-  //   );
-  //   const respData = await resp.json();
-  //   return  respData.result;
-  // }
 
   async movieSearch() {
+    scrollTo()
     Loading.pulse('Please wait...', {
       backgroundColor: 'rgba(0,0,0,0.8)',
       svgSize: '200',
@@ -108,6 +61,7 @@ export default class MoviesApiService {
   //slider and galerry
   async fetchTrendingMovies() {
     try {
+      scrollTo()
       Loading.pulse('Please wait...', {
             backgroundColor: 'rgba(0,0,0,0.8)',
             svgSize: '200',
