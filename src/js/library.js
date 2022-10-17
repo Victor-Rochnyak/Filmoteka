@@ -8,7 +8,7 @@ const btnQueue = document.querySelector('.btnQueue');
 btnWatched.addEventListener('click', showListWatched);
 btnQueue.addEventListener('click', showListQueue);
 
-// onLoad();////////////////////
+ onLoad();
 
 export function showListWatched(e) {
   e.preventDefault();
@@ -108,7 +108,7 @@ function genresList(array) {
 }
 
 function onLoad() {
-//   libGalleryRef.innerHTML = '';/////////////////
+  libGalleryRef.innerHTML = '';
   let listWt = load('watched');
   
   if (listWt && listWt.length>0) {    
@@ -124,10 +124,10 @@ function onLoad() {
     btnQueue.classList.add('activ');
     return;
   }  
-//   libGalleryRef.innerHTML = ` <div class="wrong-box"> <p class="wrong-text">Not Found</p>        
-//   <img class="img-wrong" src="https://s3.amazonaws.com/stickers.wiki/laughingCStickers/1291222.512.webp"></div>`////////////
+  libGalleryRef.innerHTML = ` <div class="wrong-box"> <p class="wrong-text">Not Found</p>        
+ <img class="img-wrong" src="https://s3.amazonaws.com/stickers.wiki/laughingCStickers/1291222.512.webp"></div>`
 }
-onLoad();
+
 
 
 
