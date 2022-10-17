@@ -35,12 +35,8 @@
     padding: 5px 5px 5px 12px;
   }
 }
-.container-icon__modal:hover {
-  background-color: #fff;
-}
-.icon-fab:hover{
-  color: #000;
-}
+
+
 .container-icon__modal:after {
   content: attr(tooltip);
   margin-left: 15px;
@@ -185,30 +181,6 @@ height:93%;
   width: 76px;
 }
 
-// !----modal--
-// .button-close{
-//   background-color: #7adcf9;
-//   width: 30px;
-//   height: 30px;
-//   position: absolute;
-//   top: 12%;
-//   left:78%;
-// }
-
-
-
-// $basicLightbox__background: rgba(0, 0, 0, .8);
-// $basicLightbox__background: rgba(0, 0, 0, .8); // Background color
-// $basicLightbox__zIndex: 1000; // Stack order
-// $basicLightbox__duration: .4s; // Transition duration
-// $basicLightbox__timing: ease; // Transition timing
-// $basicLightbox__zIndex: 1000 !default;
-// $basicLightbox__duration: .4s !default;
-// $basicLightbox__timing: ease !default;
-
-
-
-// basicLightbox ------------------------------------------------------- //
 .basicLightbox {
   
   position: fixed;
@@ -293,16 +265,17 @@ height:93%;
     
   }
 }
-// .footer-modal-backdrop{
-// background-image: url('../images/demonstration/puppy_funny-moments_4.png');
-// }
+.container-icon__modal:hover{
+  background-color: #ff6b08;
+  box-shadow: 5px 5px 8px rgba(235, 97, 6, 0.9);
+  transition: 300ms ease-in-out 0s;
+}
 
 .basicLightbox.footer-modal-backdrop {
   background-image: linear-gradient(to right, rgba(94, 99, 96, 0.6), rgba(74, 74, 79, 0.6)),
    url('/src/images/demonstration/puppy_funny-moments_4.webp');
    background-size: cover;
   background-repeat: no-repeat;
-  // @media screen and (min-width: 1899px){
-  //   transform: scale(2);
-  // }
+  
 }
+

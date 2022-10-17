@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/src/sass/index.scss" />
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <header class="header__library">
   <div class="container header__container">
@@ -29,39 +29,42 @@
       </ul>
     </nav>
   </div>
-   <form>
-        <div role="group">
-          <ul class="storage">
-            <li class="storage__item">
-              <label class="storage__label">
-                <button class="storage__input visuallyhidden btnWatched" >
-                <span class="storage__btn" id="js-WatchedButton">Watched</span>
-                </button>
-              </label>
-            </li>
-            <li class="storage__item">
-              <label class="storage__label">
-                <button class="storage__input visuallyhidden btnQueue">
-                <span class="storage__btn" id="js-QueueButton">Queue</span>
-                </button>
-              </label>
-            </li>
-          </ul>
-        </form>
-       
+  <form>
+    <div role="group">
+      <ul class="storage">
+        <li class="storage__item">
+          <label class="storage__label">
+            <button class="storage__input visuallyhidden btnWatched">
+              <span class="storage__btn" id="js-WatchedButton">Watched</span>
+            </button>
+          </label>
+        </li>
+        <li class="storage__item">
+          <label class="storage__label">
+            <button class="storage__input visuallyhidden btnQueue">
+              <span class="storage__btn" id="js-QueueButton">Queue</span>
+            </button>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </form>
+  <script type="module" src="../js/library.js"></script>
 </header>
+
 <main>
+  
   <section class="film-cards color">
     <h2 class="visually-hidden">Film cards</h2>
     <div class="cards__container container">
       <ul class="cards__list cards__list--home list">
       </ul>
     </div>
-    
+    <script type="module" src="../js/library.js"></script>
   </section>
   <div class="container">
     <a href="#" id="toTop">
-      <span><img class="to-top-arrow" src="/src/images/ghost3.png" alt="arrow-to-top"/></span>
+      <span><img class="to-top-arrow" src="/src/images/ghost3.png" alt="arrow-to-top" /></span>
     </a>
   </div>
   
@@ -180,5 +183,5 @@
     </div>
   </div>
 </footer>
-<script type="module" src="../js/library.js"></script>
+
 <script type="module" src="../js/scroll.js"></script>
