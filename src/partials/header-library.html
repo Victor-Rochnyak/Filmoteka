@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="/src/sass/index.scss"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<include src="./partials/modal-gallary.html"></include>
+<link rel="stylesheet" href="/src/sass/index.scss" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 <header class="header__library">
   <div class="container header__container">
     <a class="link" href="/src/index.html">
@@ -29,28 +29,26 @@
       </ul>
     </nav>
   </div>
-  <form>
-    <div role="group">
-      <ul class="storage">
-        <li class="storage__item">
-          <label class="storage__label">
-            <button class="storage__input visuallyhidden btnWatched">
-              <span class="storage__btn" id="js-WatchedButton">Watched</span>
-            </button>
-          </label>
-        </li>
-        <li class="storage__item">
-          <label class="storage__label">
-            <button class="storage__input visuallyhidden btnQueue">
-              <span class="storage__btn" id="js-QueueButton">Queue</span>
-            </button>
-          </label>
-        </li>
-      </ul>
-    </div>
-  </form>
-  
-  
+   <form>
+        <div role="group">
+          <ul class="storage">
+            <li class="storage__item">
+              <label class="storage__label">
+                <button class="storage__input visuallyhidden btnWatched" >
+                <span class="storage__btn" id="js-WatchedButton">Watched</span>
+                </button>
+              </label>
+            </li>
+            <li class="storage__item">
+              <label class="storage__label">
+                <button class="storage__input visuallyhidden btnQueue">
+                <span class="storage__btn" id="js-QueueButton">Queue</span>
+                </button>
+              </label>
+            </li>
+          </ul>
+        </form>
+        <script type="module" src="../js/library.js"></script>
 </header>
 <main>
   <section class="film-cards color">
