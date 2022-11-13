@@ -10,7 +10,8 @@ A short-term team project by 9 collaborators.
 
 
 - Look at [**Layout (Figma)**](<https://www.figma.com/file/HQe3RRxC8g01HNSSPBuNy1/Filmoteka-(Copy)-(Copy)-(Copy)?node-id=50631%3A2>)
-- Look at [**WebSite (GitPages)**](<https://github.com/Victor-Rochnyak/Filmoteka>)
+- Look at [**WebSite (GitPages)**]([<https://github.com/Victor-Rochnyak/Filmoteka>](https://victor-rochnyak.github.io/Filmoteka/))
+- Look at [**WebSite (GitPages)**]()
 
 I was a Scrum  Master of the project.
 The website created from scratch by the prototype in Figma.
